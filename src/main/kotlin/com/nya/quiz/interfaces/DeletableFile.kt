@@ -1,5 +1,6 @@
 package com.nya.quiz.interfaces
 
-interface DeletableFile {
+interface DeletableFile{
+    val fileName : String
     fun deleteFile(): Boolean
 }
