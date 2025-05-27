@@ -42,5 +42,9 @@ enum class MainMenuState(var state:Int){
     RANK(4),
     LOG_OUT(5),
     DELETE_ACCOUNT(6),
-    EXIT(7)
+    EXIT(7);
+
+    companion object {
+        fun fromInt(code: Int): MainMenuState? = MainMenuState.entries.find { it.state == code }
+    }
 }

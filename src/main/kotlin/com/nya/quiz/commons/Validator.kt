@@ -8,12 +8,26 @@ package com.nya.quiz.commons
  * @return : 유효성 검사 결과
  */
 fun isValid(line: String): Boolean {
-    return when(StateManager.getState()){
-        ViewState.START_VIEW -> line.trim().matches(START_MENU_REGEX.toRegex())
-        ViewState.MAIN_VIEW -> line.trim().matches(MAIN_MENU_REGEX.toRegex())
-        ViewState.END_VIEW -> false
+    when(StateManager.getState()){
+        ViewState.START_VIEW -> return line.trim().matches(START_MENU_REGEX.toRegex())
+        ViewState.MAIN_VIEW -> return line.trim().matches(MAIN_MENU_REGEX.toRegex())
+        ViewState.END_VIEW -> return false
+        else -> return true
     }
+    return false
 }
+
+
+//fun isValid(line: String): Boolean {
+//    return when(StateManager.getState()){
+//        ViewState.START_VIEW -> line.trim().matches(START_MENU_REGEX.toRegex())
+//        ViewState.MAIN_VIEW -> line.trim().matches(MAIN_MENU_REGEX.toRegex())
+//        ViewState.END_VIEW -> false
+//    }
+//}
+
+
+
 
 //package com.nya.quiz.commons
 //

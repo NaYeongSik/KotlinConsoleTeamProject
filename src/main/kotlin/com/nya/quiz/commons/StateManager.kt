@@ -23,11 +23,11 @@ object StateManager {
      * 예시로 구현 해놓은거라 수정 필요. (구체적인 처리는 각각 부분에서 처리하고, 해당 부분에서는 상태만 변경하는 방식으로 변경이 필요할 것 같아요)
      * @param line : Test를 위해 잠시 파라미터로 받았습니다.
      */
-    // TestOnly, 로그인 성공이라는 가정하에 메인메뉴로 넘어가는지 확인용
     fun updateState(line: String){
         when(this.state){
             ViewState.START_VIEW -> {
-                if (StartViewState.fromInt(line.trim().toInt()) == StartViewState.LOG_IN) setState(ViewState.MAIN_VIEW)
+                //TODO: 로그인 처리시 변경하도록 수정 필요
+                if (StartViewState.fromInt(line.trim().toInt()) == StartViewState.LOG_IN) setState(ViewState.MAIN_VIEW) // TestOnly, 로그인 성공이라는 가정하에 메인메뉴로 넘어가는지 확인용
             }
             ViewState.MAIN_VIEW -> TODO()
             ViewState.END_VIEW -> TODO()

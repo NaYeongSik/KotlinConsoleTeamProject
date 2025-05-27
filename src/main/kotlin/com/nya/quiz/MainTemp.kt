@@ -2,33 +2,20 @@ package com.nya.quiz
 
 import com.nya.quiz.commons.ConsoleManager
 import com.nya.quiz.commons.MAIN_MENU_MESSAGE
-import com.nya.quiz.commons.MainMenuState
 import com.nya.quiz.commons.START_MENU_MESSAGE
 import com.nya.quiz.commons.StateManager
 import com.nya.quiz.commons.UNVALID_INPUT_MESSAGE
 import com.nya.quiz.commons.ViewState
 import com.nya.quiz.commons.isValid
 import com.nya.quiz.commons.StartViewState
-import com.nya.quiz.models.rank.RankingFactory
-import com.nya.quiz.models.rank.RankingRepositoryImpl
-import com.nya.quiz.models.rank.RankingServiceImpl
-import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
-import com.nya.quiz.views.mainview.RankingView
-
-
-lateinit var rankingService : RankingServiceImpl
-lateinit var rankingViewModel : RankingViewModel
-lateinit var rankingView : RankingView
-
 
 /**
  * Start program
  * 콘솔 프로그램 시작 부분. State가 END_VIEW로 바뀔때까지 동작 (END_VIEW는 시작메뉴 or 메인메뉴에서 종료 입력시 State 변경. 아직 미구현)
  */
 fun startProgram(){
-
+    println(START_MENU_MESSAGE)
     while (!StateManager.isEndState()){ // State가 END_VIEW 일때 프로그램 종료
-        printMenuMessage()
         var line = ConsoleManager.consoleLine() // 사용자 입력 대기.
 
         if(isValid(line)){ // 각 State별 유효성 검사 진행
@@ -69,17 +56,6 @@ fun runStartMenuProcess(line: String){
  * @param line : 사용자 입력 값 (1~7). 사용자가 입력한 메뉴 프로세스 진행
  */
 fun runMainMenuProcess(line: String){
-    initRankingService()
-    when(MainMenuState.fromInt(line.trim().toInt())){
-        MainMenuState.START_QUIZ -> TODO()
-        MainMenuState.RETRY_INCORRECT_WORD -> TODO()
-        MainMenuState.INCORRECT_NOTE -> TODO()
-        MainMenuState.RANK -> rankingView.showRanking()
-        MainMenuState.LOG_OUT -> TODO()
-        MainMenuState.DELETE_ACCOUNT -> TODO()
-        MainMenuState.EXIT -> TODO()
-        null -> TODO()
-    }
 
 }
 
@@ -91,20 +67,6 @@ fun runMainMenuProcess(line: String){
  */
 fun runEndMenuProcess(){
 
-}
-
-fun printMenuMessage(){
-    when(StateManager.getState()){
-        ViewState.START_VIEW -> println(START_MENU_MESSAGE)
-        ViewState.MAIN_VIEW -> println(MAIN_MENU_MESSAGE)
-        ViewState.END_VIEW -> println()
-    }
-}
-
-fun initRankingService(){
-    if (!::rankingService.isInitialized) rankingService = RankingFactory(RankingRepositoryImpl).create()
-    if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingService)
-    if (!::rankingView.isInitialized) rankingView = RankingView(rankingViewModel)
 }
 
 fun main(){

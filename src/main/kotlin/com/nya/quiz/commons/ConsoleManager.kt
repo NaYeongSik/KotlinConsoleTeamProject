@@ -11,6 +11,8 @@ import java.util.Scanner
 object ConsoleManager {
     private  val scanner  = Scanner(System.`in`)
 
-    fun consoleLine(): String = scanner.nextLine()
+    fun consoleLine() = scanner.nextLine()
+
+    fun closeScanner() = scanner.close()
 
 }
