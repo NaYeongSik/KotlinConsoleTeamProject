@@ -1,126 +1,126 @@
-package com.nya.quiz
-
-import com.nya.quiz.commons.ConsoleManager
-import com.nya.quiz.commons.MAIN_MENU_MESSAGE
-import com.nya.quiz.commons.START_MENU_MESSAGE
-import com.nya.quiz.commons.StateManager
-import com.nya.quiz.commons.UNVALID_INPUT_MESSAGE
-import com.nya.quiz.commons.ViewState
-import com.nya.quiz.commons.isValid
-import com.nya.quiz.commons.StartViewState
-
-/**
- * Start program
- * 콘솔 프로그램 시작 부분. State가 END_VIEW로 바뀔때까지 동작 (END_VIEW는 시작메뉴 or 메인메뉴에서 종료 입력시 State 변경. 아직 미구현)
- */
-fun startProgram(){
-    println(START_MENU_MESSAGE)
-    while (!StateManager.isEndState()){ // State가 END_VIEW 일때 프로그램 종료
-        var line = ConsoleManager.consoleLine() // 사용자 입력 대기.
-
-        if(isValid(line)){ // 각 State별 유효성 검사 진행
-            when(StateManager.getState()){ // 각 State별로 프로세스 진행 (시작 메뉴, 메인 메뉴, 종료)
-                ViewState.START_VIEW -> runStartMenuProcess(line) // 시작 메뉴 동작
-                ViewState.MAIN_VIEW -> runMainMenuProcess(line)   // 메인 메뉴 동작
-                ViewState.END_VIEW -> runEndMenuProcess()        // 종료 동작
-            }
-        } else{
-            println(UNVALID_INPUT_MESSAGE) // 유효성 검사 실패시 출력 메시지
-        }
-
-    }
-    ConsoleManager.closeScanner()
-}
-
-/**
- * Run start menu process
- * 시작 메뉴에서 진행되는 동작(로그인, 회원가입, 도움말, 종료).
- *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
- *  생각나는대로 예시를 만들어본거라 수정이 필요하시면 수정하셔서 진행하시면 됩니다.
- * @param line : 사용자 입력 값 (1~4). 사용자가 입력한 메뉴 프로세스 진행
- */
-fun runStartMenuProcess(line: String){
-    when(StartViewState.fromInt(line.trim().toInt())){
-        StartViewState.LOG_IN -> StateManager.updateState(line)
-        StartViewState.SIGN_UP -> TODO()
-        StartViewState.HELP -> TODO()
-        StartViewState.EXIT -> TODO()
-        null -> TODO()
-    }
-}
-
-/**
- * Run main menu process
- * 메인 메뉴에서 진행되는 동작 (풀이시작, 오답다시풀기, 오답노트, 통계, 랭킹, 로그아웃, 종료)
- *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
- * @param line : 사용자 입력 값 (1~7). 사용자가 입력한 메뉴 프로세스 진행
- */
-fun runMainMenuProcess(line: String){
-
-}
-
-/**
- * Run end menu process
- * 시작 메뉴 및 메인 메뉴에서 종료 이벤트 진행시 동작
- *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
- *  종료시 추가로 필요한 작업이 있는 경우가 있을 수 있어요.
- */
-fun runEndMenuProcess(){
-
-}
-
-fun main(){
-    startProgram()
-}
-
-
-//validator 넣을것
-fun isValid(line: String): Boolean {
-    return when(StateManager.getState()){
-        ViewState.START_VIEW -> line.trim().matches(START_MENU_REGEX.toRegex())
-        ViewState.MAIN_VIEW -> line.trim().matches(MAIN_MENU_REGEX.toRegex())
-        ViewState.END_VIEW -> false
-    }
-}
-package com.nya.quiz.commons
-
-import java.io.File
-
-class Validator() {
-
-    val regex = "[^a-zA-Z0-9]".toRegex()
-    fun createId(value: String): Boolean {
-        if (value.length <= 10 && value.contains(regex) && !value.contains(*filedata *)) {
-            checkExistId(value)
-        }else {
-            throw println("잘못된 입력입니다."))
-        }
-    }
-
-    fun checkExistId(input: String): Boolean {
-        val accountFile = File("src\\main\\resources\\account.txt")
-        var accountList = mutableListOf<T>()
-        accountFile.forEachLine { accountList.add(it.split(",")[0]) }
-        if (accountList.contains(input)) true else false
-
-    }
-
-
-    fun checkPassword(value: String): Boolean {
-        if (value.length <= 10 && value.contains(regex)) {
-            println("사용가능한 비밀번호 입니다.")
-            return true
-        }
-        println("잘못된 입력입니다.")
-        return false
-    }
-
-    fun checkPasswordRepeat(value: String): Boolean {
-        if (value.length <= 10 && value.contains(*eng, num *) && !value.contains(*filedata *)) {
-            println("비밀번호가 일치합니다.")
-            return true
-        }
-        println("잘못된 입력입니다.")
-        return false
-    }
-}
+//package com.nya.quiz
+//
+//import com.nya.quiz.commons.ConsoleManager
+//import com.nya.quiz.commons.MAIN_MENU_MESSAGE
+//import com.nya.quiz.commons.START_MENU_MESSAGE
+//import com.nya.quiz.commons.StateManager
+//import com.nya.quiz.commons.UNVALID_INPUT_MESSAGE
+//import com.nya.quiz.commons.ViewState
+//import com.nya.quiz.commons.isValid
+//import com.nya.quiz.commons.StartViewState
+//
+///**
+// * Start program
+// * 콘솔 프로그램 시작 부분. State가 END_VIEW로 바뀔때까지 동작 (END_VIEW는 시작메뉴 or 메인메뉴에서 종료 입력시 State 변경. 아직 미구현)
+// */
+//fun startProgram(){
+//    println(START_MENU_MESSAGE)
+//    while (!StateManager.isEndState()){ // State가 END_VIEW 일때 프로그램 종료
+//        var line = ConsoleManager.consoleLine() // 사용자 입력 대기.
+//
+//        if(isValid(line)){ // 각 State별 유효성 검사 진행
+//            when(StateManager.getState()){ // 각 State별로 프로세스 진행 (시작 메뉴, 메인 메뉴, 종료)
+//                ViewState.START_VIEW -> runStartMenuProcess(line) // 시작 메뉴 동작
+//                ViewState.MAIN_VIEW -> runMainMenuProcess(line)   // 메인 메뉴 동작
+//                ViewState.END_VIEW -> runEndMenuProcess()        // 종료 동작
+//            }
+//        } else{
+//            println(UNVALID_INPUT_MESSAGE) // 유효성 검사 실패시 출력 메시지
+//        }
+//
+//    }
+//    ConsoleManager.closeScanner()
+//}
+//
+///**
+// * Run start menu process
+// * 시작 메뉴에서 진행되는 동작(로그인, 회원가입, 도움말, 종료).
+// *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
+// *  생각나는대로 예시를 만들어본거라 수정이 필요하시면 수정하셔서 진행하시면 됩니다.
+// * @param line : 사용자 입력 값 (1~4). 사용자가 입력한 메뉴 프로세스 진행
+// */
+//fun runStartMenuProcess(line: String){
+//    when(StartViewState.fromInt(line.trim().toInt())){
+//        StartViewState.LOG_IN -> StateManager.updateState(line)
+//        StartViewState.SIGN_UP -> TODO()
+//        StartViewState.HELP -> TODO()
+//        StartViewState.EXIT -> TODO()
+//        null -> TODO()
+//    }
+//}
+//
+///**
+// * Run main menu process
+// * 메인 메뉴에서 진행되는 동작 (풀이시작, 오답다시풀기, 오답노트, 통계, 랭킹, 로그아웃, 종료)
+// *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
+// * @param line : 사용자 입력 값 (1~7). 사용자가 입력한 메뉴 프로세스 진행
+// */
+//fun runMainMenuProcess(line: String){
+//
+//}
+//
+///**
+// * Run end menu process
+// * 시작 메뉴 및 메인 메뉴에서 종료 이벤트 진행시 동작
+// *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
+// *  종료시 추가로 필요한 작업이 있는 경우가 있을 수 있어요.
+// */
+//fun runEndMenuProcess(){
+//
+//}
+//
+//fun main(){
+//    startProgram()
+//}
+//
+//
+////validator 넣을것
+//fun isValid(line: String): Boolean {
+//    return when(StateManager.getState()){
+//        ViewState.START_VIEW -> line.trim().matches(START_MENU_REGEX.toRegex())
+//        ViewState.MAIN_VIEW -> line.trim().matches(MAIN_MENU_REGEX.toRegex())
+//        ViewState.END_VIEW -> false
+//    }
+//}
+//package com.nya.quiz.commons
+//
+//import java.io.File
+//
+//class Validator() {
+//
+//    val regex = "[^a-zA-Z0-9]".toRegex()
+//    fun createId(value: String): Boolean {
+//        if (value.length <= 10 && value.contains(regex) && !value.contains(*filedata *)) {
+//            checkExistId(value)
+//        }else {
+//            throw println("잘못된 입력입니다."))
+//        }
+//    }
+//
+//    fun checkExistId(input: String): Boolean {
+//        val accountFile = File("src\\main\\resources\\account.txt")
+//        var accountList = mutableListOf<T>()
+//        accountFile.forEachLine { accountList.add(it.split(",")[0]) }
+//        if (accountList.contains(input)) true else false
+//
+//    }
+//
+//
+//    fun checkPassword(value: String): Boolean {
+//        if (value.length <= 10 && value.contains(regex)) {
+//            println("사용가능한 비밀번호 입니다.")
+//            return true
+//        }
+//        println("잘못된 입력입니다.")
+//        return false
+//    }
+//
+//    fun checkPasswordRepeat(value: String): Boolean {
+//        if (value.length <= 10 && value.contains(*eng, num *) && !value.contains(*filedata *)) {
+//            println("비밀번호가 일치합니다.")
+//            return true
+//        }
+//        println("잘못된 입력입니다.")
+//        return false
+//    }
+//}
