@@ -1,3 +1,3 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
-class IncorrectNoteViewModel
+class RankViewModel
