@@ -12,6 +12,7 @@ fun isValid(line: String): Boolean {
         ViewState.START_VIEW -> return line.trim().matches(START_MENU_REGEX.toRegex())
         ViewState.MAIN_VIEW -> return line.trim().matches(MAIN_MENU_REGEX.toRegex())
         ViewState.END_VIEW -> return false
+        else -> return true
     }
     return false
 }
