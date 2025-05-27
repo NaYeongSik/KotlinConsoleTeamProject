@@ -1,0 +1,600 @@
+1	gather	(동) 모으다, (자료·정보)를 모으다, 얻다
+2	material	(형) 물질
+3	prescription	(명) 처방, 처방전
+4	assign	(동) 할당하다
+5	skip	(동) (일을) 거르다, 건너뛰다
+6	loneliness	(명) 외로움
+7	knowledgeable	(형) 지식이 있는
+8	fundamental	(형) 근본적인
+9	force	(명) 힘, 세력
+10	up to~	~에 달려있는, ~까지
+11	regular	(형) 정규의, 정식의
+12	attract	(동) 끌어당기다
+13	irrelevant	(형) 부적절한, 무관계한
+14	include	(동) 포함하다
+15	firm	(형) 굳은, 변치 않는 (명) 회사
+16	ecological	(형) 생태학의
+17	solution	(명) 용해, 해결
+18	still	(형) 정지한, 조용한, 잔잔한 (부) 여전히, 아직도
+19	responsibility	(명) 책임, 의무
+20	comprehension	(명) 이해
+21	reconciliation	(명) 조정, 화해
+22	resume	(동) 다시 시작하다
+23	assemble	(동) 모으다, 집합시키다
+24	abundance	(명) 풍부, 많음
+25	compensate	(동) 보상하다
+26	suburb	(명) 교외, 근교(the ~s) 도시 주변의 지역
+27	pierce	(동) 꿰뚫다, 관통하다
+28	anatomy	(명) 해부학, 해부
+29	sabotage	(동) 고의로 방해하다
+30	ambiguity	(명) 모호성
+31	population	(명) 인구, 주민
+32	probability	(명) 있음직함, 확률
+33	descent	(명) 하강, 가계, 혈통, 출신
+34	contend	(동) 논쟁하다, 주장하다
+35	insightful	(형) 통찰력이 있는
+36	entail	(동) 일으키다, 수반하다
+37	involve	(동) 포함하다
+38	manipulation	(명) 조작, 속임
+39	heritage	(명) 상속 재산, 유산
+40	intent	(명) 의향, 목적, 의도
+41	tragedy	(명) 비극(적인 사건)
+42	strict	(형) 엄격한, 엄한
+43	severe	(형) 심각한, 엄한
+44	therapy	(명) 치료
+45	racial	(형) 인종의, 민족의
+46	typical	(형) 전형적인
+47	cue	(명) 신호, 단서
+48	specific	(형) 구체적인, 특정한
+49	immediate	(형) 즉시의, 당면한
+50	neglect	(동) 방치하다, 소홀히 하다
+51	character	(명) 특성, 인격, 성격
+52	boredom	(명) 권태, 지루함
+53	vertical	(형) 수직의
+54	rough	(형) 거친
+55	path	(명) 길, 진로
+56	numerous	(형) 수많은
+57	steep	(형) 가파른, 깎아지른 듯한
+58	limit	(명) 한계(선), 한도
+59	humid	(형) 습기 있는
+60	distinguish	(동) 구별하다
+61	metaphor	(명) 은유
+62	fatality	(명) 불운, 재난, 사망자(수)
+63	integrated	(형) 통합된
+64	competence	(명) 적성, 능력
+65	incorporate	(동) 통합하다, 포함하다
+66	verdict	(명) (배심원의) 평결, 결정
+67	pledge	(명) 서약, 언질
+68	resent	(동) 분개하다
+69	existence	(명) 존재, 실재
+70	passionate	(형) 열정적인
+71	cohesion	(명) 결합, 응집(력)
+72	accommodation	(명) 거처, 숙소, 숙박 시설
+73	worship	(명) 숭배 (동) 숭배하다
+74	constitute	(동) 구성하다
+75	livestock	(명) 가축
+76	greed	(명) 탐욕, 욕심
+77	outlet	(명) 배출구, 출구
+78	evolution	(명) 발전, 진화(론)
+79	outbreak	(명) 발발, 갑작스러운 분출
+80	bias	(명) 편견, 편향
+81	arbitrary	(형) 임의의, 멋대로의
+82	shortage	(명) 부족, 결핍
+83	colonize	(동) 식민지로 만들다
+84	absence	(명) 결석, 부재, 결핍
+85	edible	(형) 먹을 수 있는
+86	eyesight	(명) 시력, 시각
+87	structure	(명) 구조, 건축
+88	physical	(형) 육체의, 신체의
+89	rate	(명) 속도, 비율
+90	measure	(명) 조치, 척도, 단위 (동) 재다, 측정하다
+91	potential	(명) 잠재력, 가능성
+92	considerable	(형) 중요한, 상당한
+93	analysis	(명) 분석, 분해
+94	notably	(부) 뚜렷하게, 특히
+95	defense	(명) 방위, 방어, 수비
+96	function	(명) 가능 (동) 작용하다
+97	arrangement	(명) 배열, 배치
+98	invisible	(형) 눈에 보이지 않는
+99	alienation	(명) 멀리함, 소외
+100	anecdote	(명) 일화
+101	simultaneously	(부) 동시에
+102	variance	(명) 변화, 변동, 불일치
+103	imitate	(동) 모방하다, 흉내 내다
+104	competent	(형) 유능한, 능력 있는
+105	resist	(동) 저항하다
+106	myriad	(형) 무수한, 가지각색의
+107	requirement	(명) 필요조건, 자격
+108	emerge	(동) 나타나다
+109	subscription	(명) 기부금, 구독료
+110	comparison	(명) 비교, 대조
+111	surpass	(동) 능가하다
+112	enhance	(동) 향상하다, 높이다
+113	feminine	(형) 여자의, 여성의
+114	nervous	(형) 불안해(초조해/두려워) 하는, 신경의
+115	suspicion	(명) 혐의, 의심
+116	awareness	(명) 인식
+117	inspire	(동) (고무)격려하다, 영감을 주다
+118	compensation	(명) 배상, 보상
+119	cherish	(동) 소중히 하다
+120	geological	(형) 지질학의
+121	desperate	(형) 필사적인, 절박한
+122	urban	(형) 도시의
+123	annoy	(동) 짜증나게 하다, 귀찮게 하다
+124	depression	(명) 침울, 우울, 불경기
+125	degree	(명) 지위, 학위, 도, 정도
+126	innocent	(형) 악의 없는, 순수한
+127	muscle	(명) 근육, 힘줄
+128	shelter	(명) 주거지, 피난 장소
+129	intentional	(형) 계획적인, 고의의
+130	subject	(명) 주제, 제목, 과목
+131	advance	(명) 전진, 진전, 발전(형) 사전의 (동) 증진되다
+132	location	(명) 장소, 위치
+133	breathe	(동) 호흡하다
+134	stripe	(명) 줄무늬, 줄
+135	persistent	(형) 고집하는, 끊임없는
+136	age	(명) 나이, 시기, 시대 (동) 나이가 들다
+137	attend	(동) ~에 출석하다
+138	appointment	(명) 임명, 지명, 약속
+139	document	(명) 서류 ,문서(동) 증명하다, 기록하다
+140	share	(명) 몫, 배당 (동) 공유하다
+141	donation	(명) 기증, 기증품
+142	graze	(동) 풀을 뜯어먹게 하다, 방목하다
+143	fierce	(형) 맹렬한, 격심한
+144	impose	(동) 부과하다, 강요하다
+145	patron	(명) 후원자
+146	enrollment	(명) 등록
+147	combustion	(명) 연소
+148	complain	(동) 불평하다, 항의하다
+149	modify	(동) 수정(변경)하다
+150	withdraw	(동) 물러나다, 철수하다, (취소)철회하다
+151	reputation	(명) 명성, 신망
+152	sanitation	(명) (공중) 위생
+153	aboriginal	(형) 호주 원주민의, 원주민의
+154	impression	(명) 인상, 감명
+155	deny	(동) 부정하다
+156	evidence	(명) 증거, 증언
+157	proactive	(형) 사전예방적인
+158	optimistic	(형) 낙관적인, 낙천적인
+159	conducive	(형) 도움이 되는
+160	reunion	(명) 재결합, 재합동, 재회
+161	reasonable	(형) 합리적인, 분별 있는
+162	object	(명) 물건, 물체, 목적, 목표 (동) 반대하다
+163	beverage	(명) 마실 것, 음료
+164	appliance	(명) 가전 기구
+165	rest	(명) 휴식, 나머지 (동) 쉬다, 휴식하다
+166	empirical	(형) 경험의, 경험적인
+167	trace	(명) 발자국, 자취, 흔적 (동) 추적하다, 찾아내다
+168	flexible	(형) 잘 구부러지는, 유연한
+169	wilderness	(명) 황야, 황무지
+170	achievement	(명) 성취, 달성
+171	article	(명) (신문·잡지의) 글, 기사, 물품(물건)
+172	portion	(명) 부분, 몫
+173	handicapped	(형) 장애가 있는, 불구의
+174	universal	(형) 우주의, 보편적인
+175	admission	(명) 입장, 인정, 입장료
+176	despair	(명) 절망, 자포자기
+177	telescope	(명) 망원경
+178	unjust	(형) 부정한, 부당한
+179	tempting	(형) 유혹하는
+180	circumstance	(명) 환경, 상황
+181	intrigue	(동) 강한 흥미(호기심)를 불러일으키다
+182	subconscious	(형) 잠재의식의
+183	defect	(명) 결점, 결함
+184	instinct	(명) 본능
+185	attain	(동) 이루다, 성취하다
+186	pitfall	(명) 함정
+187	subtract	(동) 빼다, 감하다
+188	divert	(동) (관심을)돌리다, 전환하다
+189	literacy	(명) 글을 읽고 쓸 줄 아는 능력
+190	embed	(동) (단단히) 박다, 끼워 넣다
+191	encounter	(명) 접촉, 만남 (동) 우연히 만나다
+192	hue	(명) 색조, 빛깔
+193	recognition	(명) 인지, 승인, 인정
+194	shrink	(동) 오그라들다, 움츠리다
+195	conflict	(명) 충돌, 대립, 갈등
+196	prejudice	(명) 편견, 선입관
+197	identify	(동) 확인하다, 식별하다, 동일시하다
+198	implication	(명) 영향, 함축, 암시
+199	molecule	(명) 분자
+200	restrain	(동) 제지하다, 억제하다
+201	grain	(명) 곡물, 곡류
+202	avenger	(명) 복수하는 사람, 원수를 갚는 사람
+203	exaggerate	(동) 과장하다
+204	hesitate	(동) 주저하다
+205	status	(명) 상태, 지위
+206	accompany	(동) 동반하다, 동행하다
+207	intrude	(동) 무리하게 강요하다, 방해하다
+208	prevalent	(형) (널리)보급된, 널리 행해지는
+209	impulsive	(형) 충동적인
+210	mandate	(명) 권한(동) 명령하다, 요구하다
+211	deprivation	(명) 박탈, 궁핍
+212	discipline	(명) 교과, 규율
+213	process	(명) 과정, 절차 (동) 처리하다
+214	criticism	(명) 비판, 비난
+215	transfer	(동) 옮기다, 이동하다
+216	deem	(동) 생각하다, 간주하다
+217	endow	(동) 부여하다
+218	futile	(형) 쓸데없는, 무익한
+219	shiver	(동) (몸을) 떨다
+220	revenue	(명) 소득, 수입
+221	quantity	(명) 양, 분량
+222	appreciation	(명) 감사, 감상, 이해
+223	reduction	(명) 감소, 절감
+224	suitable	(형) 적합한, 적절한
+225	moderation	(명) 적당, 중용
+226	suggestion	(명) 암시, 시사, 제안, 제의
+227	reliance	(명) 믿음, 의지
+228	gender	(명) 성, 성별
+229	medical	(형) 의학의, 의술의
+230	manual	(명) 소책자, 입문서
+231	emit	(동) (빛·열·냄새·소리를) 발하다, 방출하다
+232	retailer	(명) 소매상인
+233	conventional	(형) 전통적인, 관습적인
+234	relative	(명) 친척, 친족
+235	sprout	(동) 싹이 트다, 발아하다
+236	nurture	(동) 육성하다, 양육하다
+237	plot	(명) 음모, 줄거리
+238	distract	(동) (주의를) 산만하게 하다
+239	discern	(동) 분별하다, 식별하다
+240	confidence	(명) 신뢰, 자신, 확신
+241	distort	(동) 왜곡하다
+242	exposure	(명) 노출
+243	reinforce	(동) 강화하다, 보강하다
+244	merge	(동) 합병하다, 융합되다
+245	devour	(동) 게걸스럽게 먹다
+246	yield	(명) 산출량, 총수익(동) 생산하다,항복하다,넘겨주다
+247	vulnerable	(형) 상처 입기 쉬운, 취약한, 연약한
+248	scrutiny	(명) (면밀한) 조사, 감독
+249	nimble	(형) 날렵한, 민첩한
+250	equilibrate	(동) 평형하게 하다
+251	odd	(형) 기묘한, 이상한
+252	indulge	(동) 만족시키다, 충족시키다
+253	prevail	(동) 널리 보급되다, 유행하다
+254	be associated with	~와 관련 있다
+255	compliment	(명) 경의, 칭찬
+256	intricate	(형) 뒤얽힌, 복잡한
+257	dilute	(동) 묽게 하다, 희석하다
+258	expedition	(명) 탐험, 원정
+259	term	(명) 기간, 조건, 용어
+260	irrigation	(명) 물을 댐, 관개
+261	marine	(형) 바다의
+262	vary	(동) 변화를 주다, 다양화하다
+263	barter	(동) 물물교환하다
+264	barren	(형) (땅이) 불모의, 메마른
+265	artificial	(형) 인공적인, 인위적인
+266	classify	(동) 분류하다
+267	gratitude	(명) 감사
+268	terrify	(동) 겁나게 하다, 놀래다
+269	contraction	(명) 수축, 위축
+270	possess	(동) 소유하다, 보유하다
+271	triumph	(명) 승리
+272	liken	(동) 비유하다, 견주다
+273	distress	(명) 고통, 괴로움, 고충, 곤경
+274	likelihood	(명) 있음직한 일, 가능성
+275	empower	(동) 권한을 주다
+276	faulty	(형) 결함 있는, 잘못된
+277	alternative	(명) 대안
+278	initiative	(명) 계획, 주도권
+279	resort	(동) 의지하다, 호소하다
+280	exert	(동) 발휘하다, 행사하다
+281	context	(명) 문맥, 맥락, 상황
+282	local	(형) 지방의, 고장의
+283	abstract	(형) 추상적인
+284	biological	(형) 생물학의
+285	bankrupt	(동) 지급 불능으로 만들다, 파산시키다
+286	stable	(형) 안정된, 견고한
+287	ancient	(형) 고대의
+288	ordinary	(형) 보통의
+289	coordinate	(동) 조정하다, 조화시키다
+290	summit	(명) 정상, 꼭대기
+291	cooperation	(명) 협력, 협동
+292	absent	(형) 부재의, 결석의
+293	identical	(형) 아주 동일한, 일치하는
+294	legal	(형) 법률상의
+295	role	(명) 역할, 임무
+296	electronic	(형) 전자의
+297	transmit	(동) 보내다, 발송하다
+298	tragic	(형) 비극의
+299	concentration	(명) 집중
+300	promise	(명) 가능성, 전망
+301	fuss	(명) 공연한 소란
+302	facility	(명) 편리함, 시설, 설비
+303	terminal	(형) 말기의, 불치의,더 이상 손을 쓸 수 없는
+304	fragment	(명) 파편, 조각
+305	detached	(형) 떨어진, 분리한
+306	soak	(동) 담그다, 흠뻑 적시다
+307	expertise	(명) 전문 지식
+308	intolerable	(형) 견딜 수 없는
+309	superstition	(명) 미신
+310	commitment	(명) 약속, 전념, 헌신
+311	compensate	(동) 보상하다
+312	dismiss	(동) 묵살하다, 해고하다
+313	diffusion	(명) 확산, 전파
+314	enthusiastic	(형) 열정적인
+315	negotiation	(명) 협상, 교섭
+316	monotonous	(형) 단조로운
+317	currency	(명) 통화, 화폐
+318	reflection	(명) 반사, 반영, 반성
+319	omit	(동) 빼다, 빠뜨리다, 생략하다
+320	artifact	(명) 인공물, 가공품
+321	community	(명) 지역사회
+322	sequence	(명) 연속적인 사건들, 순서
+323	evolve	(동) 발전하다, 진화하다
+324	account	(명) 계좌, 장부, 설명
+325	annual	(형) 매의, 연례의
+326	narrow	(형) 폭이 좁은
+327	breakdown	(명) 고장, 파손
+328	drought	(명) 가뭄
+329	removal	(명) 제거, 철수
+330	modest	(형) 겸손한, 알맞은
+331	solve	(동) 해결하다
+332	navigate	(동) 길을 찾다, 항해하다
+333	device	(명) 장치, 설비
+334	awesome	(형) 엄청난, 굉장한
+335	trigger	(동) 일으키다, 유발하다
+336	command	(명) 지휘(권), 지배(권)
+337	profound	(형) 뜻 깊은, 심오한
+338	input	(명) 투입, 참여
+339	property	(명) 재산
+340	virtually	(부) 사실상, 실질적으로
+341	identity	(명) 신원, 신분, 정체, 일체성
+342	extend	(동) 연장하다
+343	geometry	(명) 기하학
+344	adversity	(명) 역경, 불행
+345	transaction	(명) (업무) 처리, 거래
+346	occasion	(명) (특정한) 경우, 때
+347	look forward to	~를 고대하다
+348	dominate	(동) 지배하다, 통치하다
+349	precise	(형) 정밀한, 정확한
+350	supposedly	(부) 추측건데, 아마도
+351	crucially	(부) 결정적으로
+352	determination	(명) 결심, 결단력
+353	glance	(명) 흘긋 봄, 한 번 봄
+354	uphold	(동) 떠받치다, (들어)올리다
+355	inherent	(형) 내재하는, 고유한
+356	reflect	(동) 반영하다, 나타내다
+357	resilience	(명) 회복력, 복원력
+358	physiology	(명) 생리학, 생리 기능
+359	outcome	(명) 결과
+360	take ~ for granted	~을 당연시하다
+361	masterpiece	(명) 걸작
+362	retrospect	(명) 회고, 회상
+363	faint	(형) 어렴풋한,(빛이) 희미한
+364	refute	(동) 반박하다,이의를 제기하다
+365	put off	연기하다
+366	crucial	(형) 결정적인, 중대한
+367	permanent	(형) 영구적인, 영속적인
+368	remark	(명) 발언, 말, 언급 (동) 말하다, 언급하다
+369	duration	(명) 내구, 지속
+370	serious	(형) 진지한, 심각한
+371	fund	(명) 자금, 기금
+372	ease	(동) (아픔을) 덜다,완화하다
+373	vegetarian	(명) 채식주의자
+374	sensible	(형) 분별력 있는
+375	consistent	(형) 일관된, 지속적인
+376	temporary	(형) 일시의
+377	neutral	(형) 중립의
+378	polar	(형) 북극[남극]의, 극지의
+379	ray	(명) 광선
+380	stick to	(동) 충실하다, 고집하다
+381	ritual	(명) (종교적)의식, 예배식
+382	dread	(동) 두려워하다, 무서워하다
+383	interfere	(동) 간섭하다, 방해하다
+384	rigid	(형) 엄격한
+385	hypothesis	(명) 가설, 가정
+386	seek	(동) 구하다, 추구하다
+387	sacrifice	(명) 희생 (동) 희생하다
+388	phenomenon	(명) 현상
+389	composer	(명) 작곡가, 구성자
+390	perspective	(명) 관점, 시각, 균형감, 원근법
+391	dormant	(형) 잠자는, 정지한
+392	reference	(명) 언급, 참조, 참고
+393	parasitic	(형) 기생하는, 기생충의
+394	mutual	(형) 서로의, 상호간의
+395	welfare	(명) 복지, 후생
+396	be charged with	~로 가득 채워지다,~한 책임을 맡고 있다
+397	dispersal	(명) 분산, 확산
+398	outlook	(명) 관점, 세계관, 전망
+399	testimony	(명) 증언
+400	literally	(부) 문자(말) 그대로
+401	adjust	(동) 맞추다, 조정하다
+402	diverse	(형) 다양한
+403	absorb	(동) 흡수하다
+404	account for	설명하다, 차지하다
+405	mature	(형) 어른스러운, 숙성된 (동) 성숙하다
+406	prone	(형) ~하기 쉬운,~의 경향이 있는
+407	asset	(명) 자산, 재산
+408	tropical	(형) 열대지방의
+409	obscure	(동) 보기 어렵게 하다, 모호하게 하다
+410	offend	(동) 기분 상하게 하다
+411	conference	(명) 회담, 협의
+412	nuclear	(형) 핵의
+413	scheme	(명) 계획, 제도
+414	competitive	(형) 경쟁의
+415	deterioration	(명) 악화, 하락, 저하
+416	proper	(형) 적당한
+417	successive	(형) 잇따른, 연속하는
+418	private	(형) 사적인, 개인에 속하는
+419	valid	(형) 유효한, 근거가 확실한
+420	pupil	(명) 학생, 문하생
+421	attachment	(명) 접착, 애정, 애착
+422	paradox	(명) 역설
+423	intervention	(명) 중재, 간섭
+424	salient	(형) 가장 중요한, 핵심적인
+425	execute	(동) (계획 따위를) 실행하다, 실시하다
+426	expand	(동) 넓히다, 확장하다
+427	maintain	(동) 유지하다
+428	precipitation	(명) 낙하, 강수량
+429	fulfill	(동) 이행하다, 완수하다
+430	regardless of	~에 관계없이
+431	sophisticated	(형) 정교한, 세련된, 고급의
+432	beneficial	(형) 유익한, 수익을 얻는
+433	verbal	(형) 말의, 구두의
+434	exceed	(동) (수량·정도를) 넘다, 초과하다
+435	dwindle	(동) 줄다, 작아지다
+436	intense	(형) 맹렬한, 강렬한
+437	evaluate	(동) 평가하다
+438	vice versa	반대로, 거꾸로, 반대로도 또한 같음
+439	astronomical	(형) 천문학의
+440	starve	(동) 굶주리다, 굶어죽다
+441	candidate	(명) 후보자, 지원자
+442	anticipate	(동) 예상하다
+443	essential	(형) 근본적인, 필수의
+444	financial	(형) 재정상의
+445	elaborate	(형) 공들인, 정교한
+446	nutrient	(명) 영양소, 영양제
+447	consumption	(명) 소비, 소모
+448	apology	(명) 사과, 변명
+449	interaction	(명) 상호 작용
+450	output	(명) 산출, 생산
+451	reaction	(명) 반응, 반작용
+452	volunteer	(명) 자원자
+453	primitive	(형) 원시의, 원시시대의
+454	indicate	(동) 나타내다, 가리키다
+455	perceive	(동) 인식하다, 이해하다
+456	faith	(명) 믿음, 신뢰
+457	devotion	(명) 헌신, 몰두, 전념
+458	warehouse	(명) 창고, 저장소
+459	objective	(명) 목적, 목표(형) 객관적인
+460	consciousness	(명) 의식, 자각
+461	absurd	(형) 불합리한, 터무니없는
+462	bury	(동) 묻다, 덮다
+463	inevitable	(형) 불가피한, 필연적인
+464	elevation	(명) 승진, 해발높이, 고도
+465	vigor	(명) 활기, 활력, 생기
+466	diminish	(동) 감소시키다
+467	determine	(동) 결정하다
+468	contribution	(명) 기여, 공헌
+469	authentic	(형) 믿을만한, 진짜의
+470	delivery	(명) 배달, 전달
+471	mimic	(동) 흉내 내다
+472	chronically	(부) 만성적으로
+473	paralyze	(동) 마비시키다
+474	guarantee	(동) 보장하다
+475	invariable	(형) 변함없는, 변치 않는
+476	regarding	(전) ~에 관하여
+477	organism	(명) 생물체
+478	justify	(동) 옳음을 보여주다, 정당화하다
+479	accumulation	(명) 축적, 누적
+480	magnitude	(명) 크기, 양
+481	productive	(형) 생산적인
+482	substitute	(동) 대신하다, 대치되다
+483	general	(형) 일반의, 보통의
+484	capital	(명) 수도, 자본, 대문자
+485	practical	(형) 실제의, 실용적인
+486	announcement	(명) 알림, 공고
+487	cellular	(형) 세포로 된
+488	stem	(명) 줄기, 대(동) 생기다, 유래하다
+489	accuracy	(명) 정확, 정밀
+490	recruit	(동) 모집하다
+491	vivid	(형) 생생한, 생기에 찬
+492	thoughtful	(형) 생각이 깊은
+493	frustration	(명) 좌절
+494	urge	(명) 강한 충동, 몰아댐 (동) 재촉하다, 강요하다
+495	aim	(명) 목적, 목표(동) 겨누다, 목표삼다
+496	confident	(형) 자신감 있는
+497	optical	(형) 눈의, 시각의
+498	workforce	(명) 노동력
+499	witness	(명) 증언, 목격자(동) 목격하다
+500	astonished	(형) 깜짝 놀란
+501	humble	(형) 겸손한, 겸허한
+502	motivate	(동) 동기를 주다, 자극하다
+503	interpret	(동) 해석하다
+504	capacity	(명) 용량, 수용력, 능력
+505	experiment	(명) 실험, 시험 (동) 실험하다
+506	criteria	(명) 표준, 기준
+507	genuine	(형) 진짜의
+508	consistency	(명) 일관성
+509	advocate	(명) 옹호자(동) 옹호/지지하다
+510	fury	(명) 분노, (전쟁·폭풍우 등 의) 격렬, 맹위
+511	evaporation	(명) 증발
+512	transition	(명) 과도기, 변이
+513	underlying	(형) 밑에 있는,기초가 되는, 근원적인
+514	extent	(명) 정도, 범위, 넓이
+515	pedestrian	(명) 보행자
+516	improvement	(명) 개량, 개선
+517	allocate	(동) 할당하다
+518	applaud	(동) 박수갈채하다, 성원하다
+519	extinct	(형) 멸종된
+520	element	(명) 요소, 성분
+521	avoidable	(형) 피할 수 있는
+522	merciful	(형) 자비로운
+523	confirm	(동) 확인하다
+524	adapt	(동) 맞추다, 적응하다,각색하다
+525	insist	(동) 주장하다, 고집하다
+526	qualification	(명) 자격, 조건
+527	revolution	(명) 혁명, 변혁
+528	characteristic	(명) 특징
+529	bite	(명) 물기, 한 입 (동) 물다, 물어뜯다
+530	celebration	(명) 기념(축하)행사, 기념(축하)
+531	shore	(명) 바닷가, 해안
+532	transportation	(명) 운송, 수송
+533	substantial	(형) 실질적인, 상당한
+534	anniversary	(명) 기념일
+535	silent	(형) 침묵하는
+536	cognitive	(형) 인식의, 인지적인
+537	extinction	(명) 멸종, 소멸
+538	facilitate	(동) 촉진하다, 쉽게 하다
+539	career	(명) 경력, 이력
+540	appropriate	(형) 적합한, 적절한
+541	be due to	~할 예정이다
+542	reverse	(형) 반대의, 거꾸로의
+543	persuasive	(형) 설득력 있는
+544	raw	(형) 가공하지 않은
+545	diabetes	(명) 당뇨병
+546	insult	(명) 모욕 (동) 모욕하다
+547	permission	(명) 허가, 면허
+548	definition	(명) 정의, 설명
+549	engage in	~에 종사하다,~에 참여하게 하다
+550	reproduction	(명) 재생, 복제, 번식
+551	magnificent	(형) 장대한, 장엄한
+552	retiree	(명) 퇴직자, 은퇴자
+553	take part in	참여하다
+554	tendency	(명) 경향, 추세
+555	agricultural	(형) 농업의
+556	texture	(명) 직물, 질감
+557	components	(명) 성분, 구성요소
+558	unfit	(형) 부적당한, 어울리지 않는
+559	habitat	(명) 서식지
+560	contradiction	(명) 반박, 모순
+561	misperception	(명) 오인, 오해
+562	creativity	(명) 창조성, 독창력
+563	species	(명) 종
+564	physics	(명) 물리학
+565	swell	(동) 부풀다
+566	rational	(형) 이성적인, 합리적인
+567	stimulate	(동) 자극하다
+568	quotation	(명) 인용, 인용구
+569	reveal	(동) 드러내다, 알리다
+570	adolescence	(명) 청소년기, 사춘기
+571	inherit	(동) 물려 받다
+572	organic	(형) 유기체의, 유기의
+573	realm	(명) 범위, 영역
+574	trait	(명) 특색, 특징
+575	ensure	(동) 보장하다
+576	extreme	(명) 극단, 극도(형) 극도의, 심한
+577	separate	(형) 갈라진, 분리된
+578	generate	(동) 발생시키다, 만들어내다
+579	contribute	(동) ~의 원인이 되다,기여하다
+580	potent	(형) 세력 있는, 유력한
+581	conform	(동) 적합하게 하다, 순응하다
+582	tension	(명) 긴장
+583	mass	(명) 덩어리, 다량
+584	adequate	(형) 어울리는, 적당한
+585	derive	(동) 끌어내다, 얻다,~에서 비롯되다
+586	excess	(명) 잉여, 초과
+587	intervene	(동) 개입하다
+588	figuratively	(부) 비유적으로
+589	democracy	(명) 민주주의
+590	restrict	(동) 제한하다, 한정하다
+591	primary	(형) 첫째의, 주요한
+592	suppress	(동) 억압하다, 억누르다
+593	assimilation	(명) 동화(작용)
+594	reproduce	(동) 번식하다, 재생하다, 복사하다
+595	substance	(명) 물질, 물체
+596	polish	(동) 닦다, 윤을 내다
+597	compact	(형) 빽빽한, 소형인
+598	estimate	(명) 평가, 견적(동) 추정(추산)하다
+599	convert	(동) 전환하다, 바꾸다
+600	symptom	(명) 징후, 증상
