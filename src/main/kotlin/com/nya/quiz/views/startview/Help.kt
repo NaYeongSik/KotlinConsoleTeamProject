@@ -7,6 +7,6 @@ class Help {
     }
 
     fun undo() {
-        println("[enter] 돌아가기")
+        println("--------------")
     }
 }

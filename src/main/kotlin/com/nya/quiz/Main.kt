@@ -1,14 +1,6 @@
 package com.nya.quiz
 
-import com.nya.quiz.commons.ConsoleManager
-import com.nya.quiz.commons.MAIN_MENU_MESSAGE
-import com.nya.quiz.commons.MainMenuState
-import com.nya.quiz.commons.START_MENU_MESSAGE
-import com.nya.quiz.commons.StateManager
-import com.nya.quiz.commons.UNVALID_INPUT_MESSAGE
-import com.nya.quiz.commons.ViewState
-import com.nya.quiz.commons.isValid
-import com.nya.quiz.commons.StartViewState
+import com.nya.quiz.commons.*
 import com.nya.quiz.models.rank.RankingFactory
 import com.nya.quiz.models.rank.RankingRepositoryImpl
 import com.nya.quiz.models.rank.RankingServiceImpl
@@ -16,28 +8,28 @@ import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
 import com.nya.quiz.views.mainview.RankingView
 
 
-lateinit var rankingService : RankingServiceImpl
-lateinit var rankingViewModel : RankingViewModel
-lateinit var rankingView : RankingView
+lateinit var rankingService: RankingServiceImpl
+lateinit var rankingViewModel: RankingViewModel
+lateinit var rankingView: RankingView
 
 
 /**
  * Start program
  * 콘솔 프로그램 시작 부분. State가 END_VIEW로 바뀔때까지 동작 (END_VIEW는 시작메뉴 or 메인메뉴에서 종료 입력시 State 변경. 아직 미구현)
  */
-fun startProgram(){
+fun startProgram() {
 
-    while (!StateManager.isEndState()){ // State가 END_VIEW 일때 프로그램 종료
+    while (!StateManager.isEndState()) { // State가 END_VIEW 일때 프로그램 종료
         printMenuMessage()
-        var line = ConsoleManager.consoleLine() // 사용자 입력 대기.
-
-        if(isValid(line)){ // 각 State별 유효성 검사 진행
-            when(StateManager.getState()){ // 각 State별로 프로세스 진행 (시작 메뉴, 메인 메뉴, 종료)
+        val line = ConsoleManager.consoleLine() // 사용자 입력 대기.
+        val validator = Validator()
+        if (validator.isValid(line)) { // 각 State별 유효성 검사 진행
+            when (StateManager.getState()) { // 각 State별로 프로세스 진행 (시작 메뉴, 메인 메뉴, 종료)
                 ViewState.START_VIEW -> runStartMenuProcess(line) // 시작 메뉴 동작
                 ViewState.MAIN_VIEW -> runMainMenuProcess(line)   // 메인 메뉴 동작
                 ViewState.END_VIEW -> runEndMenuProcess()        // 종료 동작
             }
-        } else{
+        } else {
             println(UNVALID_INPUT_MESSAGE) // 유효성 검사 실패시 출력 메시지
         }
 
@@ -52,8 +44,8 @@ fun startProgram(){
  *  생각나는대로 예시를 만들어본거라 수정이 필요하시면 수정하셔서 진행하시면 됩니다.
  * @param line : 사용자 입력 값 (1~4). 사용자가 입력한 메뉴 프로세스 진행
  */
-fun runStartMenuProcess(line: String){
-    when(StartViewState.fromInt(line.trim().toInt())){
+fun runStartMenuProcess(line: String) {
+    when (StartViewState.fromInt(line.trim().toInt())) {
         StartViewState.LOG_IN -> StateManager.updateState(line)
         StartViewState.SIGN_UP -> TODO()
         StartViewState.HELP -> TODO()
@@ -68,9 +60,9 @@ fun runStartMenuProcess(line: String){
  *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
  * @param line : 사용자 입력 값 (1~7). 사용자가 입력한 메뉴 프로세스 진행
  */
-fun runMainMenuProcess(line: String){
+fun runMainMenuProcess(line: String) {
     initRankingService()
-    when(MainMenuState.fromInt(line.trim().toInt())){
+    when (MainMenuState.fromInt(line.trim().toInt())) {
         MainMenuState.START_QUIZ -> TODO()
         MainMenuState.RETRY_INCORRECT_WORD -> TODO()
         MainMenuState.INCORRECT_NOTE -> TODO()
@@ -89,27 +81,24 @@ fun runMainMenuProcess(line: String){
  *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
  *  종료시 추가로 필요한 작업이 있는 경우가 있을 수 있어요.
  */
-fun runEndMenuProcess(){
+fun runEndMenuProcess() {
 
 }
 
-fun printMenuMessage(){
-    when(StateManager.getState()){
+fun printMenuMessage() {
+    when (StateManager.getState()) {
         ViewState.START_VIEW -> println(START_MENU_MESSAGE)
         ViewState.MAIN_VIEW -> println(MAIN_MENU_MESSAGE)
         ViewState.END_VIEW -> println()
     }
 }
 
-fun initRankingService(){
+fun initRankingService() {
     if (!::rankingService.isInitialized) rankingService = RankingFactory(RankingRepositoryImpl).create()
     if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingService)
     if (!::rankingView.isInitialized) rankingView = RankingView(rankingViewModel)
 }
 
-fun main(){
+fun main() {
     startProgram()
-
-    //val quiz = QuizView(QuizViewModel())
-    //quiz.show()
 }
