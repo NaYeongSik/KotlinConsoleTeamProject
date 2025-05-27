@@ -25,10 +25,6 @@ fun isValid(line: String): Boolean {
 //        ViewState.END_VIEW -> false
 //    }
 //}
-
-
-
-
 //package com.nya.quiz.commons
 //
 //import java.io.File
