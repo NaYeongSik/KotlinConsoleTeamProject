@@ -62,5 +62,4 @@ class QuizView(private val viewModel: QuizViewModel){
         println("맞은 문제: $correct")
         println("틀린 문제: $wrong")
     }
-
 }
