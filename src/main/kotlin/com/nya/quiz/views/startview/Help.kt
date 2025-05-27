@@ -1,6 +1,5 @@
 package com.nya.quiz.views.startview
 
-import java.util.Scanner
 
 class Help {
     fun announce() {
