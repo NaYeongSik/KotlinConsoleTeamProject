@@ -109,4 +109,7 @@ fun initRankingService(){
 
 fun main(){
     startProgram()
+
+    //val quiz = QuizView(QuizViewModel())
+    //quiz.show()
 }
