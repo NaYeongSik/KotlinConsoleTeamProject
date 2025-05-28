@@ -10,7 +10,7 @@ object User {
     // 아이디 중복 검사
     fun isUsernameTaken(username: String): Boolean {
         return try {
-            accountFile.useLines { lines -> // 파일 자동 닫기
+            accountFile.useLines { lines ->
                 lines.any { line ->
                     val parts = line.split(',')
                     val fileUsername = parts[0]

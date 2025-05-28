@@ -3,7 +3,6 @@ package com.nya.quiz.viewmodels.startVIewModels
 import com.nya.quiz.commons.ConsoleManager
 import com.nya.quiz.commons.StateManager
 import com.nya.quiz.models.User
-import com.nya.quiz.viewmodels.mainViewModels.EntryMainViewModels
 
 class LoginViewModel {
 
