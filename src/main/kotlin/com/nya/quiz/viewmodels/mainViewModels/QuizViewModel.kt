@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 class QuizViewModel {
     private val quizFileManager = QuizFileManager()
     var quizWords: List<QuizWord> = emptyList()
-        private set
+    private set
 
     private var timeLimitSec: Int = QuizTimeLimit.SHORT.time
 
