@@ -11,7 +11,7 @@ class EntryMainViewModels(
 
         val connectingId = id
         val entryMain = EntryMain()
-//        val quizViewModel = QuizViewModel()
+        val quizViewModel = QuizViewModel()
         val retryIncorrectWordViewModel = RetryIncorrectWordViewModel()
         val incorrectNoteViewModel = IncorrectNoteViewModel()
         val rankingViewModel = RankingViewModel()
