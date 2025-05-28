@@ -13,7 +13,7 @@ class EntryMainViewModels(
         val quizViewModel = QuizViewModel()
         val retryIncorrectWordViewModel = RetryIncorrectWordViewModel()
         val incorrectNoteViewModel = IncorrectNoteViewModel()
-        val rankViewModel = RankViewModel()
+        //val rankViewModel = RankViewModel()
         val logoutViewModel = LogoutViewModel()
         val deleteAccountViewModel = DeleteAccountViewModel()
         val consoleManager = ConsoleManager
@@ -35,7 +35,7 @@ class EntryMainViewModels(
                 }
 
                 4 -> {
-                    rankViewModel
+                    //rankViewModel
                 }
 
                 5 -> {

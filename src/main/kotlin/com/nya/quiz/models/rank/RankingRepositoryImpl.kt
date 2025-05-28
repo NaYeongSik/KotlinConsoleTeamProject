@@ -12,7 +12,7 @@ object RankingRepositoryImpl : RankingRepository<QuizStat>{
         //Test
         var incorectQuizNum = mutableListOf<Int>()
         incorectQuizNum += 2
-        return QuizStat("test1",0.78,incorectQuizNum,5,5)
+        return QuizStat("test1",incorectQuizNum,5,5)
     }
 
     override fun getTopRanking(): List<QuizStat> {
