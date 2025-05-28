@@ -1,6 +1,5 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
-import RankViewModel
 import com.nya.quiz.commons.ConsoleManager
 import com.nya.quiz.views.startview.EntryMain
 import kotlin.system.exitProcess
@@ -12,10 +11,10 @@ class EntryMainViewModels(
 
         val connectingId = id
         val entryMain = EntryMain()
-        val quizViewModel = QuizViewModel()
+//        val quizViewModel = QuizViewModel()
         val retryIncorrectWordViewModel = RetryIncorrectWordViewModel()
         val incorrectNoteViewModel = IncorrectNoteViewModel()
-        val rankViewModel = RankViewModel()
+        val rankingViewModel = RankingViewModel()
         val logoutViewModel = LogoutViewModel()
         val deleteAccountViewModel = DeleteAccountViewModel(connectingId)
         val consoleManager = ConsoleManager
@@ -26,7 +25,7 @@ class EntryMainViewModels(
             val selectMenu = consoleManager.consoleLine().toInt()
             when (selectMenu) {
                 1 -> {
-                    quizViewModel
+//                    quizViewModel
                 }
 
                 2 -> {
@@ -38,7 +37,7 @@ class EntryMainViewModels(
                 }
 
                 4 -> {
-                    rankViewModel
+                    rankingViewModel
                 }
 
                 5 -> {
