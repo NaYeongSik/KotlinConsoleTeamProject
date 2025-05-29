@@ -9,13 +9,12 @@ import com.nya.quiz.models.User
  * @param line : 사용자 입력 값
  * @return : 유효성 검사 결과
  */
-
-
 fun isValid(line: String): Boolean {
     return when (StateManager.getState()) {
         ViewState.START_VIEW -> line.trim().matches(START_MENU_REGEX.toRegex())
         ViewState.MAIN_VIEW -> line.trim().matches(MAIN_MENU_REGEX.toRegex())
         ViewState.END_VIEW -> false
+        else -> true
     }
 }
 

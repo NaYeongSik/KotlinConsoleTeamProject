@@ -5,19 +5,21 @@ import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
 class RankingView(private val rankingViewModel: RankingViewModel) {
 
     fun showRanking(){
-        printTopRanking(rankingViewModel.getMyRank())
-        printMyRank(rankingViewModel.getMyRank())
+        if (rankingViewModel.setRankingData()){
+            printTopRanking(rankingViewModel.getTopRank())
+            printMyRank(rankingViewModel.getMyRank())
+        }
     }
 
-    fun printTopRanking(rankingInfo: String){
-        println("======================= T O P 5 =======================")
-        println(rankingInfo)
-        println("=======================================================")
+    fun printTopRanking(topRank: List<String>){
+        println("======================== T O P 5 ========================")
+        for (topRankingData:String in topRank) println(topRankingData)
+        println("=========================================================")
     }
 
     fun printMyRank(myRank: String){
-        println("=======================================================")
-        println("  $myRank  ")
-        println("=======================================================\n\n\n")
+        println("=======================  내 순위  ========================")
+        println(myRank)
+        println("=========================================================\n")
     }
 }

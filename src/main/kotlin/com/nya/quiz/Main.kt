@@ -10,13 +10,13 @@ import com.nya.quiz.commons.ViewState
 import com.nya.quiz.commons.isValid
 import com.nya.quiz.commons.StartViewState
 import com.nya.quiz.models.rank.RankingFactory
-import com.nya.quiz.models.rank.RankingRepositoryImpl
-import com.nya.quiz.models.rank.RankingServiceImpl
+import com.nya.quiz.models.rank.RankingModel
+import com.nya.quiz.models.rank.RankingRepository
 import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
 import com.nya.quiz.views.mainview.RankingView
 
 
-lateinit var rankingService : RankingServiceImpl
+lateinit var rankingModel : RankingModel
 lateinit var rankingViewModel : RankingViewModel
 lateinit var rankingView : RankingView
 
@@ -102,8 +102,8 @@ fun printMenuMessage(){
 }
 
 fun initRankingService(){
-    if (!::rankingService.isInitialized) rankingService = RankingFactory(RankingRepositoryImpl).create()
-    if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingService)
+    if (!::rankingModel.isInitialized) rankingModel = RankingFactory(RankingRepository).create()
+    if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingModel)
     if (!::rankingView.isInitialized) rankingView = RankingView(rankingViewModel)
 }
 
