@@ -9,7 +9,7 @@ class RankingViewModel(private val rankingModel: RankingModel){
 
     private fun requestTotalRanking() = rankingModel.getTotalRanking()
 
-    fun getMyRank(): String = getMyRankingData("test1")
+    fun getMyRank(): String = getMyRankingData("test")
 
     fun getTopRank(): List<String>{
         val topRankList = mutableListOf<String>()
@@ -29,7 +29,7 @@ class RankingViewModel(private val rankingModel: RankingModel){
         var correctRate = data.correctRate * 100
         var userId = data.userId
 
-        return "${rank+1} 위 , ${userId} 님 ,정답률: ${correctRate}% , 진행한 문제: ${total}문제"
+        return " ${rank+1} 위 ${userId} 님, 정답률: ${correctRate}%, 진행한 문제: ${total}문제"
     }
 
     private fun sortRanking(data: List<QuizStat>): List<QuizStat>{

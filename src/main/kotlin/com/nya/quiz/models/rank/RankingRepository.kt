@@ -18,26 +18,53 @@ object RankingRepository : RankingRepository{
         return quizStatsList
     }
 
-    override fun recordRanking(id: String, score: Float) {
-        TODO("Not yet implemented")
-        // TODO: 파일에 해당 계정의 점수 수정하기
+    override fun recordRanking(data: QuizStat): Boolean {
+        runCatching {
+            incorrectNoteFileManager.writeFile(data.toString())
+        }.onSuccess { return true }.onFailure { return false }
+        return false
     }
 
-    override fun deleteInfo(id: String) {
-        TODO("Not yet implemented")
-        // TODO: 파일에 해당 계정의 정보 지우기
-    }
+    override fun updateRanking(updateData: QuizStat): Boolean {
+        runCatching {
+            var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
+            var strBuilder = kotlin.text.StringBuilder()
 
-    fun findMyRanking(dataList: List<String>, id: String): QuizStat{
-        for (data:String in dataList){
-            if (data.isNotBlank()) {
-                if (data.split("|")[0].trim().equals(id)) {
-                    return convertToQuizStat(data)
+            for (data:String in totalData){
+                if (data.isNotBlank()) {
+                    if (!data.split("|")[0].trim().equals(updateData.userId)) {
+                        strBuilder.append(data)
+                        strBuilder.append("\n")
+                    } else {
+                        strBuilder.append(updateData.toString())
+                        strBuilder.append("\n")
+                    }
                 }
             }
-        }
-        return QuizStat()
+            incorrectNoteFileManager.updateFile(strBuilder.toString())
+        }.onSuccess { return true }.onFailure { return false }
+        return false
     }
+
+    override fun deleteInfo(id: String): Boolean {
+        runCatching {
+            var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
+            var strBuilder = kotlin.text.StringBuilder()
+
+            for (data:String in totalData){
+                if (data.isNotBlank()) {
+                    if (!data.split("|")[0].trim().equals(id)) {
+                        strBuilder.append(data)
+                        strBuilder.append("\n")
+                    }
+                }
+            }
+
+            incorrectNoteFileManager.updateFile(strBuilder.toString())
+        }.onSuccess { return true }.onFailure { return false }
+        return false
+    }
+
 
     fun convertToQuizStat(data: String): QuizStat{
         var dataList = data.split("|")

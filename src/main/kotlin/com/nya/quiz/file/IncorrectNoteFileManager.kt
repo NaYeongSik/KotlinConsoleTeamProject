@@ -19,7 +19,6 @@ class IncorrectNoteFileManager(
         runCatching {
             if (!file.exists()) return null
             return file.bufferedReader().use { reader -> reader.readLines() }
-
         }.onFailure { println("정보를 가져오지 못했습니다.") }
         return null
     }
@@ -29,6 +28,14 @@ class IncorrectNoteFileManager(
             if (!file.exists()) return false
             file.appendText(text)
         }.onFailure { println("데이터를 추가하지 못했습니다.") }
+        return false
+    }
+
+    override fun updateFile(text: String): Boolean {
+        runCatching {
+            if (!file.exists()) return false
+            file.writeText(text)
+        }.onFailure { println("데이터를 수정하지 못했습니다.") }
         return false
     }
 }

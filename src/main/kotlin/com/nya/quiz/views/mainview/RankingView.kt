@@ -8,6 +8,8 @@ class RankingView(private val rankingViewModel: RankingViewModel) {
         if (rankingViewModel.setRankingData()){
             printTopRanking(rankingViewModel.getTopRank())
             printMyRank(rankingViewModel.getMyRank())
+        } else{
+            printErrorMessage()
         }
     }
 
@@ -21,5 +23,9 @@ class RankingView(private val rankingViewModel: RankingViewModel) {
         println("=======================  내 순위  ========================")
         println(myRank)
         println("=========================================================\n")
+    }
+
+    fun printErrorMessage(){
+        println("랭킹 정보를 읽어오지 못했습니다.")
     }
 }
