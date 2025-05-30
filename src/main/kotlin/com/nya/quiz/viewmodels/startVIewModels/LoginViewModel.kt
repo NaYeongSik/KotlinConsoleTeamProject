@@ -3,6 +3,7 @@ package com.nya.quiz.viewmodels.startVIewModels
 import com.nya.quiz.commons.ConsoleManager
 import com.nya.quiz.commons.StateManager
 import com.nya.quiz.models.User
+import com.nya.quiz.models.rank.RankingRepository
 
 object LoginViewModel {
 
@@ -15,6 +16,7 @@ object LoginViewModel {
             if (User.loginUser(inputUsername, inputPassword)) {
                 println("로그인 되었습니다.")
                 User.setId(inputUsername)
+                RankingRepository.setMyProfile(inputUsername)
                 break
             } else {
                 println("입력정보가 틀렸습니다. 다시 입력하세요.")

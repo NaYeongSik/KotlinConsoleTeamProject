@@ -4,15 +4,24 @@ import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.interfaces.rank.RankingRepository
 
-object RankingRepository : RankingRepository{
+object RankingRepository : RankingRepository {
 
     private val incorrectNoteFileManager: IncorrectNoteFileManager = IncorrectNoteFileManager()
+
+    private lateinit var profile: QuizStat
+
+    fun setMyProfile(userId: String) {
+        var totalList = getTotalRanking()
+        profile = totalList.find { it ->
+            it.userId == userId
+        } ?: QuizStat(userId)
+    }
 
     override fun getTotalRanking(): List<QuizStat> {
         var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
         val quizStatsList = mutableListOf<QuizStat>()
 
-        for (data:String in totalData){
+        for (data: String in totalData) {
             if (data.isNotBlank()) quizStatsList.add(convertToQuizStat(data))
         }
         return quizStatsList
@@ -30,7 +39,7 @@ object RankingRepository : RankingRepository{
             var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
             var strBuilder = kotlin.text.StringBuilder()
 
-            for (data:String in totalData){
+            for (data: String in totalData) {
                 if (data.isNotBlank()) {
                     if (!data.split("|")[0].trim().equals(updateData.userId)) {
                         strBuilder.append(data)
@@ -51,7 +60,7 @@ object RankingRepository : RankingRepository{
             var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
             var strBuilder = kotlin.text.StringBuilder()
 
-            for (data:String in totalData){
+            for (data: String in totalData) {
                 if (data.isNotBlank()) {
                     if (!data.split("|")[0].trim().equals(id)) {
                         strBuilder.append(data)
@@ -66,7 +75,7 @@ object RankingRepository : RankingRepository{
     }
 
 
-    fun convertToQuizStat(data: String): QuizStat{
+    fun convertToQuizStat(data: String): QuizStat {
         var dataList = data.split("|")
         var userId = dataList[0].trim()
         var correctRate = dataList[1].trim().toFloat()
@@ -78,6 +87,6 @@ object RankingRepository : RankingRepository{
         } else {
             emptyList<String>()
         }
-        return QuizStat(userId,correctRate,correctCount,incorrectCount,incorrectQuiz)
+        return QuizStat(userId, correctRate, correctCount, incorrectCount, incorrectQuiz)
     }
 }
