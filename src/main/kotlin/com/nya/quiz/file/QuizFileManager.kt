@@ -18,4 +18,8 @@ class QuizFileManager(
     override fun writeFile(str: String): Boolean {
         TODO("Not yet implemented")
     }
+
+    override fun updateFile(text: String): Boolean {
+        TODO("Not yet implemented")
+    }
 }

@@ -1,14 +1,18 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.commons.QuizCounter
+import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.commons.QuizTimeLimit
 import com.nya.quiz.commons.ViewState
+import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.models.QuizWord
 import kotlinx.coroutines.*
 
 class QuizViewModel {
     private val quizFileManager = QuizFileManager()
+    private val incorrectNoteFileManager = IncorrectNoteFileManager()
+
     var quizWords: List<QuizWord> = emptyList()
     private set
 
@@ -70,7 +74,17 @@ class QuizViewModel {
     fun saveIncorrectWord(quizWord: QuizWord) {
         if (quizWord !in incorrectWords){
             incorrectWords.add(quizWord)
+            val incorrectQuiz = quizWord.toString()
+            incorrectNoteFileManager.updateFile(incorrectQuiz)
         }
+    }
+    fun saveCorrectCount(correct: Int){
+        val correctCount = correct.toString()
+        incorrectNoteFileManager.updateFile(correctCount)
+    }
+    fun saveIncorrectCount(incorrect: Int){
+        val incorrectCount = incorrect.toString()
+        incorrectNoteFileManager.updateFile(incorrectCount)
     }
 
     fun getIncorrectWords(): List<QuizWord> = incorrectWords

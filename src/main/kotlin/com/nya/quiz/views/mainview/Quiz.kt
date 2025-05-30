@@ -104,7 +104,9 @@ class QuizView(private val viewModel: QuizViewModel){
         println("\n퀴즈 종료!")
         println("총 문제: $totalQuiz")
         println("맞은 문제: $correct")
+        viewModel.saveCorrectCount(correct)
         println("틀린 문제: $wrong")
+        viewModel.saveIncorrectCount(correct)
 
 
         if (isStopped) {
