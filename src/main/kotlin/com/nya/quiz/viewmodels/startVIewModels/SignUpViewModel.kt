@@ -2,10 +2,10 @@ package com.nya.quiz.viewmodels.startVIewModels
 
 import com.nya.quiz.models.User
 import com.nya.quiz.commons.ConsoleManager
-import com.nya.quiz.commons.isValidPassword
-import com.nya.quiz.commons.isValidUsername
 
-class SignUpViewModel {
+
+/*class SignUpViewModel {
+    val validator = Validator()
 
     fun signUp() {
         println("\n----- 회원가입 -----")
@@ -48,4 +48,4 @@ class SignUpViewModel {
         User.saveAccount(username, password)
         println("회원가입이 완료되었습니다. 시작 메뉴로 돌아갑니다.")
     }
-}
+}*/

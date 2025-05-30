@@ -9,25 +9,33 @@ class IncorrectNoteFileManager(
     override val fileName: String = "src/main/resources/userStatInfo.txt"
 ): WritableFile,ReadableFile,DeletableFile {
 
+    val file = File(fileName)
+
     override fun deleteFile(): Boolean {
         TODO("Not yet implemented")
     }
 
     override fun readFile(): List<String>? {
-        val file = File(fileName)
-        if (!file.exists()) return null
-        return file.readLines()
+        runCatching {
+            if (!file.exists()) return null
+            return file.bufferedReader().use { reader -> reader.readLines() }
+        }.onFailure { println("정보를 가져오지 못했습니다.") }
+        return null
     }
 
-    override fun writeFile(str: String): Boolean {
-        File(fileName).writeText(str)
-        return true
+    override fun writeFile(text: String): Boolean {
+        runCatching {
+            if (!file.exists()) return false
+            file.appendText(text)
+        }.onFailure { println("데이터를 추가하지 못했습니다.") }
+        return false
     }
 
     override fun updateFile(text: String): Boolean {
-        val file = File(fileName)
-        if (!file.exists()) return false
-        file.appendText(text)
-        return true
+        runCatching {
+            if (!file.exists()) return false
+            file.writeText(text)
+        }.onFailure { println("데이터를 수정하지 못했습니다.") }
+        return false
     }
 }

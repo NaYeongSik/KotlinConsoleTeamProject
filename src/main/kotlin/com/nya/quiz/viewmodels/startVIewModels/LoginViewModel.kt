@@ -6,8 +6,8 @@ import com.nya.quiz.models.User
 
 class LoginViewModel {
 
-    fun login() {
-//        val entryMainViewModels = EntryMainViewModels()
+    /*fun login() {
+        val entryMainViewModels = EntryMainViewModels()
         while (true) {
             print("아이디를 입력하세요. : ")
             val inputUsername = ConsoleManager.consoleLine()
@@ -22,7 +22,7 @@ class LoginViewModel {
                 println("입력정보가 틀렸습니다. 다시 입력하세요.")
             }
         }
-    }
+    }*/
 }
 
 //class LoginViewModel {

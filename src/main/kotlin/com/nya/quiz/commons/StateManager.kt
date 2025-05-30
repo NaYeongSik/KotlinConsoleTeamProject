@@ -30,7 +30,7 @@ object StateManager {
                 if (StartViewState.fromInt(line.trim().toInt()) == StartViewState.LOG_IN) setState(ViewState.MAIN_VIEW) // TestOnly, 로그인 성공이라는 가정하에 메인메뉴로 넘어가는지 확인용
             }
             ViewState.MAIN_VIEW -> TODO()
-            ViewState.END_VIEW -> TODO()
+            ViewState.END_VIEW -> println()
         }
     }
 
