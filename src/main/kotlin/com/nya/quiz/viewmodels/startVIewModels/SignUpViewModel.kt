@@ -2,10 +2,10 @@ package com.nya.quiz.viewmodels.startVIewModels
 
 import com.nya.quiz.models.User
 import com.nya.quiz.commons.ConsoleManager
-import com.nya.quiz.commons.Validator
+import com.nya.quiz.commons.isValidPassword
+import com.nya.quiz.commons.isValidUsername
 
 class SignUpViewModel {
-    val validator = Validator()
 
     fun signUp() {
         println("\n----- 회원가입 -----")
@@ -15,7 +15,7 @@ class SignUpViewModel {
         while (true) {
             print("사용할 아이디를 입력하세요 (4~12자, 영문/숫자): ")
             val inputUsername = ConsoleManager.consoleLine()
-            val (isValid, message) = validator.isValidUsername(inputUsername)
+            val (isValid, message) = isValidUsername(inputUsername)
             println(message)
             if (isValid) {
                 username = inputUsername
@@ -26,7 +26,7 @@ class SignUpViewModel {
         while (true) {
             print("사용할 비밀번호를 입력하세요 (6자 이상): ")
             val inputPassword = ConsoleManager.consoleLine()
-            val (isValid, message) = validator.isValidPassword(inputPassword)
+            val (isValid, message) = isValidPassword(inputPassword)
             if (message.isNotBlank()) println(message)
             if (isValid) {
                 password = inputPassword

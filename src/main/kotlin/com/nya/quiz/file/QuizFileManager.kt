@@ -5,7 +5,7 @@ import com.nya.quiz.interfaces.WritableFile
 import java.io.File
 
 class QuizFileManager(
-    override val fileName: String = "src/main/kotlin/com/nya/quiz/file/수능필수영단어600.txt"
+    override val fileName: String = "src/main/resources/수능필수영단어600.txt"
 ): ReadableFile, WritableFile {
 
     // 파일을 한줄씩 리스트로 읽기
@@ -15,7 +15,7 @@ class QuizFileManager(
         return file.readLines()
     }
 
-    override fun writeFile(): Boolean {
+    override fun writeFile(str: String): Boolean {
         TODO("Not yet implemented")
     }
 }

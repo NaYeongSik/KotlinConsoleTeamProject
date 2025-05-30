@@ -5,7 +5,6 @@ import com.nya.quiz.commons.QuizTimeLimit
 import com.nya.quiz.commons.ViewState
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.models.QuizWord
-import com.nya.quiz.models.SolveQuiz
 import kotlinx.coroutines.*
 
 class QuizViewModel {
@@ -47,9 +46,17 @@ class QuizViewModel {
         timerJob?.cancel()
         timerJob = CoroutineScope(Dispatchers.Default).launch {
             var timeLeft = timeLimitSec
-            while (timeLeft > 0) {
+            while (timeLeft >= 0) {
+                withContext(Dispatchers.Default) { onTick(timeLeft)}
+                delay(1000)
+                timeLeft--
             }
+            withContext(Dispatchers.Default) { onTimeout() }
         }
+    }
+
+    fun stopTimer(){
+        timerJob?.cancel()
     }
 
     fun getRandomQuiz(counter: QuizCounter): List<QuizWord> = quizWords.shuffled().take(counter.quizNum)
@@ -70,14 +77,6 @@ class QuizViewModel {
 
     fun stopSolving(){
         ViewState.MAIN_VIEW
-    }
-
-    fun continueSolving(){
-
-    }
-
-    fun finishSolving(){
-
     }
 
 }

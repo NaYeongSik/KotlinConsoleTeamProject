@@ -12,7 +12,9 @@ import com.nya.quiz.commons.StartViewState
 import com.nya.quiz.models.rank.RankingFactory
 import com.nya.quiz.models.rank.RankingRepositoryImpl
 import com.nya.quiz.models.rank.RankingServiceImpl
+import com.nya.quiz.viewmodels.mainViewModels.QuizViewModel
 import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
+import com.nya.quiz.views.mainview.QuizView
 import com.nya.quiz.views.mainview.RankingView
 
 
@@ -71,7 +73,10 @@ fun runStartMenuProcess(line: String){
 fun runMainMenuProcess(line: String){
     initRankingService()
     when(MainMenuState.fromInt(line.trim().toInt())){
-        MainMenuState.START_QUIZ -> TODO()
+        MainMenuState.START_QUIZ -> {
+            val quizView = QuizView(QuizViewModel())
+            quizView.show()
+        }
         MainMenuState.RETRY_INCORRECT_WORD -> TODO()
         MainMenuState.INCORRECT_NOTE -> TODO()
         MainMenuState.RANK -> rankingView.showRanking()
