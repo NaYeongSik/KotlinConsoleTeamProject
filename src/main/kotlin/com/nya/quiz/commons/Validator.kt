@@ -31,6 +31,19 @@ fun isUsernameExist(username: String): Boolean {
         false
     }
 }
+fun isUsernameExist(username: String): Boolean {
+    return try {
+        accountFile.useLines { lines ->
+            lines.any { line ->
+                val parts = line.split(',')
+                val fileUsername = parts[0]
+                fileUsername == username
+            }
+        }
+    } catch (e: Exception) {
+        false
+    }
+}
 
 fun isValidUsername(username: String): Pair<Boolean, String> {
     if (username.isBlank()) {
