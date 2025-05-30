@@ -15,7 +15,8 @@ class QuizFileManager(
         return file.readLines()
     }
 
-    override fun writeFile(text: String): Boolean {
+
+    override fun writeFile(str: String): Boolean {
         TODO("Not yet implemented")
     }
 

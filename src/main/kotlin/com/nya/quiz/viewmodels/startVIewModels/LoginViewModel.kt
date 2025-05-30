@@ -16,7 +16,7 @@ class LoginViewModel {
             if (User.loginUser(inputUsername, inputPassword)) {
                 println("로그인 되었습니다.")
                 StateManager.updateState("1")
-                entryMainViewModels.selectMainMenu(inputUsername)
+//                entryMainViewModels.selectMainMenu(inputUsername)
                 break
             } else {
                 println("입력정보가 틀렸습니다. 다시 입력하세요.")
