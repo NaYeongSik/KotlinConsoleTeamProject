@@ -1,25 +1,21 @@
 package com.nya.quiz.models
 
+import com.nya.quiz.commons.StateManager
 import java.io.File
-import java.io.IOException
 
 object User {
     private const val ACCOUNT_FILE_PATH = "src/main/resources/account.txt"
     val accountFile = File(ACCOUNT_FILE_PATH)
+    var accountId = ""
 
-    // 아이디 중복 검사
-    fun isUsernameTaken(username: String): Boolean {
-        return try {
-            accountFile.useLines { lines ->
-                lines.any { line ->
-                    val parts = line.split(',')
-                    val fileUsername = parts[0]
-                    fileUsername == username
-                }
-            }
-        } catch (e: Exception) {
-            false
-        }
+    fun setId(input: String) {
+        accountId = input
+    }
+
+    fun getId() = accountId
+
+    fun logout() {
+        accountId = ""
     }
 
     // 새 계정 저장
@@ -33,12 +29,12 @@ object User {
         return try {
             accountFile.useLines { lines ->
                 lines.any { line ->
-                    val parts = line.split(',')
-                        val fileUsername = parts[0]
-                        val filePassword = parts[1]
-                        fileUsername == username && filePassword == passwordToCheck
-                    }
+                    val parts = line.split(',', limit = 2)
+                    val fileUsername = parts[0]
+                    val filePassword = parts[1]
+                    fileUsername == username && filePassword == passwordToCheck
                 }
+            }
         } catch (e: Exception) {
             false
         }
