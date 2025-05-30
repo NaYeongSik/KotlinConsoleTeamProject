@@ -1,5 +1,8 @@
 package com.nya.quiz.commons
 
+import com.nya.quiz.models.User
+import com.nya.quiz.viewmodels.startVIewModels.LoginViewModel
+
 /**
  * State manager
  * 상태 관리를 싱글톤 패턴으로 구현.
@@ -15,7 +18,8 @@ object StateManager {
 
     fun getState(): ViewState = this.state
 
-    fun isEndState() = if (this.state == ViewState.END_VIEW) true else false // while문 종료 조건으로 사용. 사용자가 종료 입력시 프로그램 종료 처리를 위해
+    fun isEndState() =
+        if (this.state == ViewState.END_VIEW) true else false // while문 종료 조건으로 사용. 사용자가 종료 입력시 프로그램 종료 처리를 위해
 
     /**
      * Update state
@@ -23,15 +27,17 @@ object StateManager {
      * 예시로 구현 해놓은거라 수정 필요. (구체적인 처리는 각각 부분에서 처리하고, 해당 부분에서는 상태만 변경하는 방식으로 변경이 필요할 것 같아요)
      * @param line : Test를 위해 잠시 파라미터로 받았습니다.
      */
-    fun updateState(line: String){
-        when(this.state){
+    fun updateState() {
+        when (this.state) {
             ViewState.START_VIEW -> {
-                //TODO: 로그인 처리시 변경하도록 수정 필요
-                if (StartViewState.fromInt(line.trim().toInt()) == StartViewState.LOG_IN) setState(ViewState.MAIN_VIEW) // TestOnly, 로그인 성공이라는 가정하에 메인메뉴로 넘어가는지 확인용
+                if (User.getId().isNotEmpty()) setState(ViewState.MAIN_VIEW)
+                if (User.getId().isEmpty()) setState(ViewState.END_VIEW)
             }
-            ViewState.MAIN_VIEW -> TODO()
-            ViewState.END_VIEW -> println()
+            ViewState.MAIN_VIEW -> {
+                if (User.getId().isEmpty()) setState(ViewState.START_VIEW)
+                if (User.getId().isNotEmpty()) setState(ViewState.END_VIEW)
+            }
+            ViewState.END_VIEW -> TODO()
         }
     }
-
 }

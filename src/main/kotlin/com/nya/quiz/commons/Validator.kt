@@ -1,6 +1,7 @@
 package com.nya.quiz.commons
 
 import com.nya.quiz.models.User
+import com.nya.quiz.models.User.accountFile
 
 /**
  * Is valid
@@ -17,6 +18,19 @@ fun isValid(line: String): Boolean {
         else -> true
     }
 }
+fun isUsernameExist(username: String): Boolean {
+    return try {
+        accountFile.useLines { lines ->
+            lines.any { line ->
+                val parts = line.split(',')
+                val fileUsername = parts[0]
+                fileUsername == username
+            }
+        }
+    } catch (e: Exception) {
+        false
+    }
+}
 
 fun isValidUsername(username: String): Pair<Boolean, String> {
     if (username.isBlank()) {
@@ -28,7 +42,7 @@ fun isValidUsername(username: String): Pair<Boolean, String> {
     if (!username.all { it.isLetterOrDigit() }) {
         return false to "아이디는 영문자와 숫자만 사용할 수 있습니다."
     }
-    if (User.isUsernameTaken(username)) {
+    if (isUsernameExist(username)) {
         return false to "이미 사용 중인 아이디입니다."
     }
     return true to "사용 가능한 아이디입니다."
