@@ -12,17 +12,18 @@ import com.nya.quiz.commons.isValid
 import com.nya.quiz.commons.StartViewState
 import com.nya.quiz.models.User
 import com.nya.quiz.models.rank.RankingFactory
-import com.nya.quiz.models.rank.RankingRepositoryImpl
-import com.nya.quiz.models.rank.RankingServiceImpl
+import com.nya.quiz.models.rank.RankingModel
+import com.nya.quiz.models.rank.RankingRepository
+import com.nya.quiz.viewmodels.mainViewModels.QuizViewModel
 import com.nya.quiz.viewmodels.mainViewModels.DeleteAccountViewModel
 import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
 import com.nya.quiz.viewmodels.startVIewModels.HelpViewModel
 import com.nya.quiz.viewmodels.startVIewModels.LoginViewModel
 import com.nya.quiz.viewmodels.startVIewModels.SignUpViewModel
 import com.nya.quiz.views.mainview.RankingView
+import com.nya.quiz.views.mainview.QuizView
 
-
-lateinit var rankingService: RankingServiceImpl
+lateinit var rankingModel : RankingModel
 lateinit var rankingViewModel: RankingViewModel
 lateinit var rankingView: RankingView
 
@@ -87,7 +88,10 @@ fun runStartMenuProcess(line: String) {
 fun runMainMenuProcess(line: String) {
     initRankingService()
     when (MainMenuState.fromInt(line.trim().toInt())) {
-        MainMenuState.START_QUIZ -> TODO()
+        MainMenuState.START_QUIZ -> {
+            val quizView = QuizView(QuizViewModel())
+            quizView.show()
+        }
         MainMenuState.RETRY_INCORRECT_WORD -> TODO()
         MainMenuState.INCORRECT_NOTE -> TODO()
         MainMenuState.RANK -> rankingView.showRanking()
@@ -125,9 +129,9 @@ fun printMenuMessage() {
     }
 }
 
-fun initRankingService() {
-    if (!::rankingService.isInitialized) rankingService = RankingFactory(RankingRepositoryImpl).create()
-    if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingService)
+fun initRankingService(){
+    if (!::rankingModel.isInitialized) rankingModel = RankingFactory(RankingRepository).create()
+    if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingModel)
     if (!::rankingView.isInitialized) rankingView = RankingView(rankingViewModel)
 }
 
