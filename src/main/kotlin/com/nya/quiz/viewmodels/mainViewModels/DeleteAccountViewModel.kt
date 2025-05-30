@@ -1,6 +1,7 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.commons.ConsoleManager
+import com.nya.quiz.models.User
 import com.nya.quiz.views.mainview.DeleteAccount
 import com.nya.quiz.models.User.accountFile
 import com.nya.quiz.views.startview.EntryMain
@@ -9,22 +10,19 @@ import com.nya.quiz.views.startview.EntryMain
 class DeleteAccountViewModel(connectingId: String) {
     val deleteAccount = DeleteAccount()
     val entryMain = EntryMain()
-    val currentId = connectingId
 
     fun deleteAccount(): Boolean {
         deleteAccount.recheckMessage()
         while (true) {
             val input = ConsoleManager.consoleLine()
             if (input == "1") {
-                accountFile.useLines { lines ->
-                    lines.forEach { line ->
-                        val parts = line.split(',')[0]
-                        if (parts == currentId) {
-                            accountFile.writeText(lines.joinToString("\n"))
-                        }
-                    }
+                val linesToKeep = accountFile.readLines().filter { line ->
+                    line.split(',')[0] != User.getId()
                 }
+                accountFile.writeText(linesToKeep.joinToString(separator = "\n"))
+                accountFile.appendText("\n")
                 deleteAccount.completeMessage()
+                User.logout()
                 return true
             }
             if (input == "2") {
