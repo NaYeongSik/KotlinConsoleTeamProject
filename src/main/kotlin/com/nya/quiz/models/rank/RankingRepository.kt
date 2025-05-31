@@ -8,14 +8,7 @@ object RankingRepository : RankingRepository {
 
     private val incorrectNoteFileManager: IncorrectNoteFileManager = IncorrectNoteFileManager()
 
-    private lateinit var profile: QuizStat
-
-    fun setMyProfile(userId: String) {
-        var totalList = getTotalRanking()
-        profile = totalList.find { it ->
-            it.userId == userId
-        } ?: QuizStat(userId)
-    }
+    lateinit var profile: QuizStat
 
     override fun getTotalRanking(): List<QuizStat> {
         var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
@@ -58,22 +51,32 @@ object RankingRepository : RankingRepository {
     override fun deleteInfo(id: String): Boolean {
         runCatching {
             var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
-            var strBuilder = kotlin.text.StringBuilder()
+            var strBuilder = StringBuilder()
 
             for (data: String in totalData) {
                 if (data.isNotBlank()) {
                     if (!data.split("|")[0].trim().equals(id)) {
                         strBuilder.append(data)
                         strBuilder.append("\n")
+                    } else {
+                        strBuilder.append(QuizStat(id).toString())
+                        strBuilder.append("\n")
                     }
                 }
             }
 
             incorrectNoteFileManager.updateFile(strBuilder.toString())
-        }.onSuccess { return true }.onFailure { return false }
+        }.onSuccess { setMyProfile(id); return true }.onFailure { return false }
         return false
     }
 
+    fun setMyProfile(userId: String){
+        var totalList = getTotalRanking()
+        profile = totalList.find {
+                it ->
+            it.userId == userId
+        }?: QuizStat(userId)
+    }
 
     fun convertToQuizStat(data: String): QuizStat {
         var dataList = data.split("|")
@@ -89,4 +92,6 @@ object RankingRepository : RankingRepository {
         }
         return QuizStat(userId, correctRate, correctCount, incorrectCount, incorrectQuiz)
     }
+
+
 }

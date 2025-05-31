@@ -2,6 +2,7 @@ package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.models.rank.RankingModel
+import com.nya.quiz.models.rank.RankingRepository
 
 class RankingViewModel(private val rankingModel: RankingModel){
 
@@ -9,27 +10,30 @@ class RankingViewModel(private val rankingModel: RankingModel){
 
     private fun requestTotalRanking() = rankingModel.getTotalRanking()
 
-    fun getMyRank(): String = getMyRankingData("test")
+    fun getMyRank(): String = getMyRankingData(RankingRepository.profile.userId)
 
     fun getTopRank(): List<String>{
         val topRankList = mutableListOf<String>()
         var topRankData = sortedRankList.take(5)
-        topRankData.forEachIndexed { index, data -> topRankList.add(convertToRankForm(data,index))}
+        topRankData.forEachIndexed { index, data -> if (data.correctRate > 0 )topRankList.add(convertToRankForm(data,index))}
         return topRankList
     }
 
     fun setRankingData(): Boolean {
-        var totalData = requestTotalRanking()
-        sortedRankList = sortRanking(totalData)
+        runCatching {
+            var totalData = requestTotalRanking()
+            sortedRankList = sortRanking(totalData)
+        }.onFailure { return false }
         return if (sortedRankList.isNotEmpty()) true else false
     }
 
-    private fun convertToRankForm(data: QuizStat,rank: Int): String{
+    private fun convertToRankForm(data: QuizStat,index: Int): String{
         var total = data.correctCount + data.incorrectCount
         var correctRate = data.correctRate * 100
         var userId = data.userId
+        var rank = if (total > 0) index+1 else "-"
 
-        return " ${rank+1} 위 ${userId} 님, 정답률: ${correctRate}%, 진행한 문제: ${total}문제"
+        return " ${rank} 위 ${userId} 님, 정답률: ${correctRate}%, 진행한 문제: ${total}문제"
     }
 
     private fun sortRanking(data: List<QuizStat>): List<QuizStat>{

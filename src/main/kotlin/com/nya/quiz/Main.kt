@@ -16,10 +16,12 @@ import com.nya.quiz.models.rank.RankingModel
 import com.nya.quiz.models.rank.RankingRepository
 import com.nya.quiz.viewmodels.mainViewModels.QuizViewModel
 import com.nya.quiz.viewmodels.mainViewModels.DeleteAccountViewModel
+import com.nya.quiz.viewmodels.mainViewModels.IncorrectNoteViewModel
 import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
 import com.nya.quiz.viewmodels.startVIewModels.HelpViewModel
 import com.nya.quiz.viewmodels.startVIewModels.LoginViewModel
 import com.nya.quiz.viewmodels.startVIewModels.SignUpViewModel
+import com.nya.quiz.views.mainview.IncorrectNoteView
 import com.nya.quiz.views.mainview.RankingView
 import com.nya.quiz.views.mainview.QuizView
 
@@ -93,7 +95,10 @@ fun runMainMenuProcess(line: String) {
             quizView.show()
         }
         MainMenuState.RETRY_INCORRECT_WORD -> TODO()
-        MainMenuState.INCORRECT_NOTE -> TODO()
+        MainMenuState.INCORRECT_NOTE -> {
+            val incorrectNoteView = IncorrectNoteView(IncorrectNoteViewModel())
+            incorrectNoteView.showIncorrectNote()
+        }
         MainMenuState.RANK -> rankingView.showRanking()
         MainMenuState.LOG_OUT -> {
             User.logout()

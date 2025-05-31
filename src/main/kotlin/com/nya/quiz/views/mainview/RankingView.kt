@@ -15,8 +15,7 @@ class RankingView(private val rankingViewModel: RankingViewModel) {
 
     fun printTopRanking(topRank: List<String>){
         println("======================== T O P 5 ========================")
-        for (topRankingData:String in topRank) println(topRankingData)
-        println("=========================================================")
+        if (topRank.isNotEmpty()) for (topRankingData:String in topRank) println(topRankingData) else println("랭킹 정보가 없습니다.")
     }
 
     fun printMyRank(myRank: String){
