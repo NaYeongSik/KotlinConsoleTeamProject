@@ -1,6 +1,9 @@
 package com.nya.quiz.views.mainview
 
 import com.nya.quiz.commons.ConsoleManager
+import com.nya.quiz.commons.INCORRECT_NOTE_INIT_FAIL
+import com.nya.quiz.commons.INCORRECT_NOTE_INIT_SUCCESS
+import com.nya.quiz.commons.RETURN_MAIN_MENU
 import com.nya.quiz.viewmodels.mainViewModels.IncorrectNoteViewModel
 
 class IncorrectNoteView(private val incorrectNoteViewModel: IncorrectNoteViewModel){
@@ -16,9 +19,11 @@ class IncorrectNoteView(private val incorrectNoteViewModel: IncorrectNoteViewMod
         println("[1] 내 오답노트 초기화  [2] 메인 메뉴로 돌아가기")
         var inputMenu = ConsoleManager.consoleLine()
         when(inputMenu.trim()){
-            "1" -> if (incorrectNoteViewModel.deleteMyIncorrectNote()) println("내 오답노트를 초기화 했습니다.\n") else println("내 오답노트 초기화를 실패했습니다.\n")
-            "2" -> "메인 메뉴로 돌아갑니다.\n"
-            else -> "올바른 메뉴를 입력해주세요.\n"
+            "1" -> {
+                if (incorrectNoteViewModel.deleteMyIncorrectNote()) println(INCORRECT_NOTE_INIT_SUCCESS)
+                else println(INCORRECT_NOTE_INIT_FAIL)
+            }
+            "2" -> println(RETURN_MAIN_MENU)
         }
 
     }

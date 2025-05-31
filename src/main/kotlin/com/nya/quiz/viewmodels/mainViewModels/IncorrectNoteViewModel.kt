@@ -1,10 +1,10 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
-import com.nya.quiz.models.rank.RankingRepository
+import com.nya.quiz.models.rank.RankingRepositoryImpl
 
 class IncorrectNoteViewModel{
 
-    private val rankingRepository = RankingRepository
+    private val rankingRepository = RankingRepositoryImpl
 
     fun getMyIncorrectNote(): String{
         var myProfile = rankingRepository.profile

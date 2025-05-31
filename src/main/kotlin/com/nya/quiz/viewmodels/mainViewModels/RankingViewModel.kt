@@ -2,7 +2,7 @@ package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.models.rank.RankingModel
-import com.nya.quiz.models.rank.RankingRepository
+import com.nya.quiz.models.rank.RankingRepositoryImpl
 
 class RankingViewModel(private val rankingModel: RankingModel){
 
@@ -10,7 +10,7 @@ class RankingViewModel(private val rankingModel: RankingModel){
 
     private fun requestTotalRanking() = rankingModel.getTotalRanking()
 
-    fun getMyRank(): String = getMyRankingData(RankingRepository.profile.userId)
+    fun getMyRank(): String = getMyRankingData(RankingRepositoryImpl.profile.userId)
 
     fun getTopRank(): List<String>{
         val topRankList = mutableListOf<String>()

@@ -13,7 +13,7 @@ import com.nya.quiz.commons.StartViewState
 import com.nya.quiz.models.User
 import com.nya.quiz.models.rank.RankingFactory
 import com.nya.quiz.models.rank.RankingModel
-import com.nya.quiz.models.rank.RankingRepository
+import com.nya.quiz.models.rank.RankingRepositoryImpl
 import com.nya.quiz.viewmodels.mainViewModels.QuizViewModel
 import com.nya.quiz.viewmodels.mainViewModels.DeleteAccountViewModel
 import com.nya.quiz.viewmodels.mainViewModels.IncorrectNoteViewModel
@@ -135,7 +135,7 @@ fun printMenuMessage() {
 }
 
 fun initRankingService(){
-    if (!::rankingModel.isInitialized) rankingModel = RankingFactory(RankingRepository).create()
+    if (!::rankingModel.isInitialized) rankingModel = RankingFactory(RankingRepositoryImpl).create()
     if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingModel)
     if (!::rankingView.isInitialized) rankingView = RankingView(rankingViewModel)
 }

@@ -4,7 +4,7 @@ import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.interfaces.rank.RankingRepository
 
-object RankingRepository : RankingRepository {
+object RankingRepositoryImpl : RankingRepository {
 
     private val incorrectNoteFileManager: IncorrectNoteFileManager = IncorrectNoteFileManager()
 
