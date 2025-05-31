@@ -7,6 +7,7 @@ import com.nya.quiz.commons.ViewState
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.models.QuizWord
+import com.nya.quiz.models.rank.RankingRepository
 import kotlinx.coroutines.*
 
 class QuizViewModel {
@@ -74,17 +75,14 @@ class QuizViewModel {
     fun saveIncorrectWord(quizWord: QuizWord) {
         if (quizWord !in incorrectWords){
             incorrectWords.add(quizWord)
-            val incorrectQuiz = quizWord.toString()
-            incorrectNoteFileManager.updateFile(incorrectQuiz)
+            //RankingRepository.profile.incorrectQuiz.plus(incorrectWords)
         }
     }
     fun saveCorrectCount(correct: Int){
-        val correctCount = correct.toString()
-        incorrectNoteFileManager.updateFile(correctCount)
+        RankingRepository.profile.correctCount += correct
     }
     fun saveIncorrectCount(incorrect: Int){
-        val incorrectCount = incorrect.toString()
-        incorrectNoteFileManager.updateFile(incorrectCount)
+        RankingRepository.profile.incorrectCount += incorrect
     }
 
     fun getIncorrectWords(): List<QuizWord> = incorrectWords

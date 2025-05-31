@@ -3,10 +3,13 @@ package com.nya.quiz.models.rank
 import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.interfaces.rank.RankingRepository
+import com.nya.quiz.models.Quiz
 
 object RankingRepository : RankingRepository{
 
     private val incorrectNoteFileManager: IncorrectNoteFileManager = IncorrectNoteFileManager()
+
+    lateinit var profile: QuizStat
 
     override fun getTotalRanking(): List<QuizStat> {
         var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
@@ -17,6 +20,14 @@ object RankingRepository : RankingRepository{
         }
         return quizStatsList
     }
+
+    fun setMyProfile(userId: String){
+        var totalList = getTotalRanking()
+        profile = totalList.find {
+                it -> it.userId.equals(userId)
+        }?: QuizStat(userId)
+    }
+
 
     override fun recordRanking(data: QuizStat): Boolean {
         runCatching {
@@ -56,10 +67,12 @@ object RankingRepository : RankingRepository{
                     if (!data.split("|")[0].trim().equals(id)) {
                         strBuilder.append(data)
                         strBuilder.append("\n")
+                    } else {
+                        strBuilder.append(QuizStat(id))
+                        strBuilder.append("\n")
                     }
                 }
             }
-
             incorrectNoteFileManager.updateFile(strBuilder.toString())
         }.onSuccess { return true }.onFailure { return false }
         return false
