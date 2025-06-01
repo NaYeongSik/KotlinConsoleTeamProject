@@ -125,6 +125,7 @@ fun runMainMenuProcess(line: String) {
 fun runEndMenuProcess() {
     StateManager.updateState()
     printMenuMessage()
+    ConsoleManager.closeScanner()
 }
 
 fun printMenuMessage() {

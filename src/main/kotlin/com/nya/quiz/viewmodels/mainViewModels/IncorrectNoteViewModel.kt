@@ -23,8 +23,8 @@ class IncorrectNoteViewModel{
                 "$word : $meanings"
             }.toList()
 
-            // 10개씩 한 줄에 출력
-            formattedList.chunked(10).forEach { lineList ->
+            // 5개씩 한 줄에 출력
+            formattedList.chunked(5).forEach { lineList ->
                 stringBuilder.append(lineList.joinToString("    "))
                 stringBuilder.append("\n")
             }
