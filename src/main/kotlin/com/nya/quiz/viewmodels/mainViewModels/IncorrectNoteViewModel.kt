@@ -15,7 +15,7 @@ class IncorrectNoteViewModel{
             stringBuilder.append(quiz)
             stringBuilder.append("\n")
         }
-        stringBuilder.append("\n진행한 문제 수 : ${myProfile.correctCount + myProfile.incorrectCount}\n정답률: ${myProfile.correctRate * 100}%")
+        stringBuilder.append("\n진행한 문제 수 : ${myProfile.correctCount + myProfile.incorrectCount}\n정답률: ${myProfile.correctRate}%")
 
         return stringBuilder.toString()
     }

@@ -24,6 +24,7 @@ class IncorrectNoteView(private val incorrectNoteViewModel: IncorrectNoteViewMod
                 else println(INCORRECT_NOTE_INIT_FAIL)
             }
             "2" -> println(RETURN_MAIN_MENU)
+            else -> showIncorrectNoteMenu()
         }
 
     }

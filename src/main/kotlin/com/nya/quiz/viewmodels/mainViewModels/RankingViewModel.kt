@@ -29,7 +29,7 @@ class RankingViewModel(private val rankingModel: RankingModel){
 
     private fun convertToRankForm(data: QuizStat,index: Int): String{
         var total = data.correctCount + data.incorrectCount
-        var correctRate = data.correctRate * 100
+        var correctRate = data.correctRate
         var userId = data.userId
         var rank = if (total > 0) index+1 else "-"
 
