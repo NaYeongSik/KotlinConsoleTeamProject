@@ -1,6 +1,5 @@
 package com.nya.quiz.commons
 
-import com.nya.quiz.models.User
 import com.nya.quiz.models.User.accountFile
 
 /**
