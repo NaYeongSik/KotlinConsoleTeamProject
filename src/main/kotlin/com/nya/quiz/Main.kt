@@ -14,16 +14,14 @@ import com.nya.quiz.models.User
 import com.nya.quiz.models.rank.RankingFactory
 import com.nya.quiz.models.rank.RankingModel
 import com.nya.quiz.models.rank.RankingRepository
-import com.nya.quiz.viewmodels.mainViewModels.QuizViewModel
-import com.nya.quiz.viewmodels.mainViewModels.DeleteAccountViewModel
-import com.nya.quiz.viewmodels.mainViewModels.IncorrectNoteViewModel
-import com.nya.quiz.viewmodels.mainViewModels.RankingViewModel
+import com.nya.quiz.viewmodels.mainViewModels.*
 import com.nya.quiz.viewmodels.startVIewModels.HelpViewModel
 import com.nya.quiz.viewmodels.startVIewModels.LoginViewModel
 import com.nya.quiz.viewmodels.startVIewModels.SignUpViewModel
 import com.nya.quiz.views.mainview.IncorrectNoteView
 import com.nya.quiz.views.mainview.RankingView
 import com.nya.quiz.views.mainview.QuizView
+import com.nya.quiz.views.mainview.RetryIncorrectWordView
 
 lateinit var rankingModel : RankingModel
 lateinit var rankingViewModel: RankingViewModel
@@ -94,7 +92,10 @@ fun runMainMenuProcess(line: String) {
             val quizView = QuizView(QuizViewModel())
             quizView.show()
         }
-        MainMenuState.RETRY_INCORRECT_WORD -> TODO()
+        MainMenuState.RETRY_INCORRECT_WORD -> {
+            val retryIncorrectWordView = RetryIncorrectWordView(RetryIncorrectWordViewModel())
+            retryIncorrectWordView.show()
+        }
         MainMenuState.INCORRECT_NOTE -> {
             val incorrectNoteView = IncorrectNoteView(IncorrectNoteViewModel())
             incorrectNoteView.showIncorrectNote()

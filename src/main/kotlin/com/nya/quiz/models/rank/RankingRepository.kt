@@ -44,7 +44,7 @@ object RankingRepository : RankingRepository {
                 }
             }
             incorrectNoteFileManager.updateFile(strBuilder.toString())
-        }.onSuccess { return true }.onFailure { return false }
+        }.onSuccess { setMyProfile(updateData.userId); return true }.onFailure { return false }
         return false
     }
 
