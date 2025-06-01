@@ -3,6 +3,7 @@ package com.nya.quiz.views.mainview
 import com.nya.quiz.commons.QuizCounter
 import com.nya.quiz.commons.QuizTimeLimit
 import com.nya.quiz.models.QuizWord
+import com.nya.quiz.models.rank.RankingRepositoryImpl
 import com.nya.quiz.startProgram
 import com.nya.quiz.viewmodels.mainViewModels.QuizViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -17,13 +18,13 @@ class QuizView(private val viewModel: QuizViewModel){
         // 문제 수 선택
         val quizCounter = selectQuizCounter()
         // 시간 제한 선택
-        val timeLimit = selectQuizTimeLimit()
-        viewModel.setTimeLimit(timeLimit)
+//        val timeLimit = selectQuizTimeLimit()
+//        viewModel.setTimeLimit(timeLimit)
         // 문제 로드
         viewModel.loadQuizWords()
         val quizList = viewModel.getRandomQuiz(quizCounter)
         // 퀴즈 진행
-        solveQuiz(quizList, viewModel.getTimeLimitSec())
+        solveQuiz(quizList)
         // 이어서 풀기
         askContinueOrFinish()
     }
@@ -34,7 +35,10 @@ class QuizView(private val viewModel: QuizViewModel){
             "1" -> QuizCounter.SHORT
             "2" -> QuizCounter.MIDDLE
             "3" -> QuizCounter.LONG
-            else -> QuizCounter.SHORT
+            else -> {
+                println("잘못된 입력입니다.")
+                selectQuizCounter()
+            }
         }
     }
 
@@ -44,78 +48,102 @@ class QuizView(private val viewModel: QuizViewModel){
             "1" -> QuizTimeLimit.SHORT
             "2" -> QuizTimeLimit.MIDDLE
             "3" -> QuizTimeLimit.LONG
-        else -> QuizTimeLimit.SHORT
+            else -> QuizTimeLimit.SHORT
         }
     }
 
-    private fun solveQuiz(quizList: List<QuizWord>, timeLimitSec: Int) {
+    private fun solveQuiz(quizList: List<QuizWord>){
         val totalQuiz = quizList.size
         var correct = 0
         var wrong = 0
         var isStopped = false
+        var idx = 0
 
-        for ((idx, quiz) in quizList.withIndex()) {
-            println("\n[${idx + 1}] ${quiz.word} : (뜻을 입력하세요, 제한시간 ${timeLimitSec}초)" +
-                    "\nPASS는 엔터를 눌러주세요(오답처리 됩니다.)" +
-                    "\n풀이를 중단하려면 0번을 입력해주세요")
-            var userInput: String? = null
-            val inputJob = CoroutineScope(Dispatchers.IO).launch {
-                userInput = readLine()
-            }
-            var timeout = false
+        while (idx < quizList.size) {
+            val quiz = quizList[idx]
 
-            viewModel.startTimer(
-                timeLimitSec,
-                onTick = { left -> print("\r남은 시간: ${left}초   ") },
-                onTimeout = {
-                    timeout = true
-                    println("\n시간 초과!\n엔터를 눌러주세요")
-                    inputJob.cancel()
-                }
+            println(
+                "\n[${idx + 1}] ${quiz.word} : (뜻을 입력하세요, 문제수 ${totalQuiz}개)" +
+                        "\nPASS는 엔터를 눌러주세요(오답처리 됩니다.)" +
+                        "\n풀이를 중단하려면 0번을 입력해주세요"
             )
 
-            runBlocking {
-                inputJob.join()
-                viewModel.stopTimer()
-            }
+            val userInput = readLine()
 
-            if(userInput?.trim() == "0"){
-                if(confirmStopQuiz()){
+            if (userInput?.trim() == "0") {
+                if (confirmStopQuiz()) {
                     isStopped = true
                     break
-                }else{
+                } else {
+                    // continue 대신 idx를 증가시키지 않고 넘어감
                     continue
                 }
             }
 
-            if (timeout || userInput == null) {
+            if (userInput == null) {
                 println("오답! 정답: ${quiz.meanings.joinToString(", ")}")
                 wrong++
+                idx++
                 viewModel.saveIncorrectWord(quiz)
-            } else if (viewModel.isCorrectAnswer(userInput!!, quiz)) {
+            } else if (viewModel.isCorrectAnswer(userInput, quiz)) {
                 println("정답!")
                 correct++
+                idx++
             } else {
                 println("오답! 정답: ${quiz.meanings.joinToString(", ")}")
                 wrong++
+                idx++
                 viewModel.saveIncorrectWord(quiz)
             }
         }
+
+        if (isStopped) {
+            println("풀이가 중단되었습니다.")
+        }
+
+        // 다른곳에 누적시켜놨다가 풀이가 종료되면 누적시키기
         println("\n퀴즈 종료!")
         println("총 문제: $totalQuiz")
         println("맞은 문제: $correct")
         viewModel.saveCorrectCount(correct)
         println("틀린 문제: $wrong")
-        viewModel.saveIncorrectCount(correct)
+        viewModel.saveIncorrectCount(wrong)
 
+        val fileCorrect = RankingRepositoryImpl.profile.correctCount
+        val fileTotalQuiz = RankingRepositoryImpl.profile.correctCount + RankingRepositoryImpl.profile.incorrectCount
+        val correctRate = viewModel.calculateCorrectRate(fileCorrect,fileTotalQuiz)
+        viewModel.saveCalculateCorrectRate(correctRate)
 
-        if (isStopped) {
-            println("풀이가 중단되었습니다. 메인 메뉴로 돌아갑니다.")
-        }
-
+        RankingRepositoryImpl.updateRanking(RankingRepositoryImpl.profile)
     }
 
-    fun askContinueOrFinish() {
+
+
+
+////            var userInput: String? = null
+////            val inputJob = CoroutineScope(Dispatchers.IO).launch {
+////                userInput = readLine()
+////            }
+////            var timeout = false
+////
+////            viewModel.startTimer(
+////                timeLimitSec,
+////                onTick = { left -> print("\r남은 시간: ${left}초   ") },
+////                onTimeout = {
+////                    timeout = true
+////                    println("\n시간 초과!\n엔터를 눌러주세요")
+////                    inputJob.cancel()
+////                }
+////            )
+////
+////            runBlocking {
+////                inputJob.join()
+////                viewModel.stopTimer()
+////            }
+
+
+
+    private fun askContinueOrFinish() {
         println("퀴즈를 이어서 풀겠습니까? (1: 이어서 풀기 / 2: 종료)")
         when(readLine()?.trim()){
             "1" -> show()
