@@ -26,14 +26,17 @@ class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel)
     }
 
     private fun selectQuizCounter(): Int {
-        val incorrectSize = RankingRepositoryImpl.profile.incorrectQuiz.size
+        val incorrectQuiz = RankingRepositoryImpl.profile.incorrectQuiz
+        val lastQuizListStr = incorrectQuiz.lastOrNull()
+        val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+        val incorrectSize = if (lastQuizListStr != null) regex.findAll(lastQuizListStr).count() else 0
+
         return if (incorrectSize < 10) {
-            println("현재 오답이 10개 이하이기 때문에, 모든 오답 문제를 출제합니다 " +
-                    "\n 현재 오답${incorrectSize}개")
+            println("현재 오답이 10개 이하이기 때문에, 모든 오답 문제를 출제합니다 \n 현재 오답${incorrectSize}개")
             incorrectSize
-        } else{
-            println("문제 수를 선택하세요: 1. 10문제   2. 20문제  3. 30문제")
-            when (readLine()?.trim()){
+        } else {
+            println("문제 수를 선택하세요: 1. 10문제 2. 20문제 3. 30문제" + "\n 현재 오답수 ${incorrectSize}")
+            when (readLine()?.trim()) {
                 "1" -> 10
                 "2" -> 20
                 "3" -> 30

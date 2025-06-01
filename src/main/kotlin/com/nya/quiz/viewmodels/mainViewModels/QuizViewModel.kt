@@ -69,13 +69,33 @@ class QuizViewModel {
         return quizWord.meanings.any { userInput.trim() == it.trim() }
     }
 
+    // 퀴즈 시작 전 기존 오답 불러오는 함수
+    fun loadIncorrectWordsFromProfile() {
+        val lastIncorrectListStr = RankingRepositoryImpl.profile.incorrectQuiz.lastOrNull()
+        if (lastIncorrectListStr != null && lastIncorrectListStr.isNotBlank()) {
+            val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            val parsed = regex.findAll(lastIncorrectListStr).map { match ->
+                val word = match.groupValues[1].trim()
+                val meanings = match.groupValues[2].split(',').map { it.trim() }
+                QuizWord(word, meanings)
+            }.toMutableList()
+            incorrectWords.clear()
+            incorrectWords.addAll(parsed)
+        } else {
+            incorrectWords.clear()
+        }
+    }
 
     fun saveIncorrectWord(quizWord: QuizWord) {
         if (quizWord !in incorrectWords){
             incorrectWords.add(quizWord)
-            RankingRepositoryImpl.profile.incorrectQuiz = RankingRepositoryImpl.profile.incorrectQuiz.plus(incorrectWords.toString())
         }
+        // 중복 제거
+        val distinctIncorrectWords = incorrectWords.distinct()
+        RankingRepositoryImpl.profile.incorrectQuiz =
+            RankingRepositoryImpl.profile.incorrectQuiz.dropLast(1) + listOf(distinctIncorrectWords.toString())
     }
+
     fun saveCorrectCount(correct: Int){
         RankingRepositoryImpl.profile.correctCount += correct
     }

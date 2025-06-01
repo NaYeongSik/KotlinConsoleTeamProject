@@ -23,6 +23,8 @@ class QuizView(private val viewModel: QuizViewModel){
         // 문제 로드
         viewModel.loadQuizWords()
         val quizList = viewModel.getRandomQuiz(quizCounter)
+        // 기존 오답 불러오기
+        viewModel.loadIncorrectWordsFromProfile()
         // 퀴즈 진행
         solveQuiz(quizList)
         // 이어서 풀기

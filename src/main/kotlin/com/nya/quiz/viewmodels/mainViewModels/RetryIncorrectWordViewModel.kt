@@ -2,12 +2,15 @@ package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.models.QuizWord
+import com.nya.quiz.models.rank.RankingRepositoryImpl
 
 class RetryIncorrectWordViewModel{
     private val incorrectNoteFileManager = IncorrectNoteFileManager()
 
     var incorrectNoteQuizWords: List<QuizWord> = emptyList()
         private set
+
+
 
 
     fun loadIncorrectNoteQuizWords(userId: String){
@@ -35,6 +38,7 @@ class RetryIncorrectWordViewModel{
 
         incorrectNoteQuizWords = quizWord
     }
+
 
     fun getRandomQuiz(counter: Int): List<QuizWord> = incorrectNoteQuizWords.shuffled().take(counter)
 
