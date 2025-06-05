@@ -1,26 +1,20 @@
 package com.nya.quiz.file
 
+import com.nya.quiz.commons.WORD_NOTE_FILE_PATH
 import com.nya.quiz.interfaces.ReadableFile
-import com.nya.quiz.interfaces.WritableFile
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 
-class QuizFileManager(
-    override val fileName: String = "src/main/resources/수능필수영단어600.txt"
-): ReadableFile, WritableFile {
+class QuizFileManager(): ReadableFile{
 
     // 파일을 한줄씩 리스트로 읽기
-    override fun readFile(): List<String>? {
-        val file = File(fileName)
-        if (!file.exists()) return null
-        return file.readLines()
-    }
+    override suspend fun readFile(): List<String>? {
+        return withContext(Dispatchers.IO){
+            val file = File(WORD_NOTE_FILE_PATH)
+            if (!file.exists()) return@withContext null
+            return@withContext file.readLines()
+        }
 
-
-    override fun writeFile(str: String): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun updateFile(text: String): Boolean {
-        TODO("Not yet implemented")
     }
 }

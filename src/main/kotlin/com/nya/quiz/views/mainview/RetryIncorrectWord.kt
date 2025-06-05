@@ -1,14 +1,15 @@
 package com.nya.quiz.views.mainview
 
-import com.nya.quiz.commons.QuizCounter
+import com.nya.quiz.commons.ConsoleManager
+import com.nya.quiz.commons.WORD_NOTE_REGEX
 import com.nya.quiz.models.QuizWord
-import com.nya.quiz.models.rank.RankingRepositoryImpl
+import com.nya.quiz.models.rank.UserStatRepositoryImpl
 import com.nya.quiz.viewmodels.mainViewModels.RetryIncorrectWordViewModel
 
 class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel) {
 
     fun show() {
-        val incorrectQuiz = RankingRepositoryImpl.profile.incorrectQuiz
+        val incorrectQuiz = UserStatRepositoryImpl.profile.incorrectQuiz
         if (incorrectQuiz.isNullOrEmpty()) {
             println("저장된 오답문제가 없어 풀이가 불가능합니다.")
             return
@@ -17,7 +18,7 @@ class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel)
         // 문제 수 선택
         val quizCounter = selectQuizCounter()
         // 유저 아이디
-        val userId = RankingRepositoryImpl.profile.userId
+        val userId = UserStatRepositoryImpl.profile.userId
         // 문제 로드
         viewModel.loadIncorrectNoteQuizWords(userId)
         val quizList = viewModel.getRandomQuiz(quizCounter)
@@ -26,9 +27,9 @@ class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel)
     }
 
     private fun selectQuizCounter(): Int {
-        val incorrectQuiz = RankingRepositoryImpl.profile.incorrectQuiz
+        val incorrectQuiz = UserStatRepositoryImpl.profile.incorrectQuiz
         val lastQuizListStr = incorrectQuiz.lastOrNull()
-        val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+        val regex = Regex(WORD_NOTE_REGEX)
         val incorrectSize = if (lastQuizListStr != null) regex.findAll(lastQuizListStr).count() else 0
 
         return if (incorrectSize < 10) {
@@ -36,7 +37,7 @@ class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel)
             incorrectSize
         } else {
             println("문제 수를 선택하세요: 1. 10문제 2. 20문제 3. 30문제" + "\n 현재 오답수 ${incorrectSize}")
-            when (readLine()?.trim()) {
+            when (ConsoleManager.consoleLine()?.trim()) {
                 "1" -> 10
                 "2" -> 20
                 "3" -> 30
@@ -64,7 +65,7 @@ class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel)
                         "\n풀이를 중단하려면 0번을 입력해주세요"
             )
 
-            val userInput = readLine()
+            val userInput = ConsoleManager.consoleLine()
 
             if (userInput?.trim() == "0") {
                 if(confirmStopQuiz()) {
@@ -103,7 +104,7 @@ class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel)
     private fun confirmStopQuiz(): Boolean {
         while (true) {
             println("정말 풀이를 종료하시겠습니까? (1: 예 / 2: 아니오)")
-            when (readLine()?.trim()) {
+            when (ConsoleManager.consoleLine()?.trim()) {
                 "1" -> return true  // 종료
                 "2" -> return false // 계속 풀이
                 else -> println("잘못된 입력입니다. 다시 입력해 주세요.")

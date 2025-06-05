@@ -1,6 +1,7 @@
 package com.nya.quiz.commons
 
-import com.nya.quiz.models.User.accountFile
+import com.nya.quiz.models.UserRepository
+
 
 /**
  * Is valid
@@ -18,17 +19,14 @@ fun isValid(line: String): Boolean {
     }
 }
 fun isUsernameExist(username: String): Boolean {
-    return try {
-        accountFile.useLines { lines ->
-            lines.any { line ->
-                val parts = line.split(',')
-                val fileUsername = parts[0]
-                fileUsername == username
-            }
+    val totalAccountInfo = UserRepository.getTotalAccountInfo()
+    for (accountData in totalAccountInfo){
+        if (accountData.isNotBlank()){
+            val data = accountData.split(",")
+            if(data[0] == username) return true
         }
-    } catch (e: Exception) {
-        false
     }
+    return false
 }
 
 fun isValidUsername(username: String): Pair<Boolean, String> {

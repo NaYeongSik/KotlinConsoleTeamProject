@@ -2,13 +2,8 @@ package com.nya.quiz.models
 
 import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.commons.StateManager
-import java.io.File
 
 object User {
-    private const val ACCOUNT_FILE_PATH = "src/main/resources/account.txt"
-    private const val ACCOUNT_STAT_FILE_PATH = "src/main/resources/userStatInfo.txt"
-    val accountFile = File(ACCOUNT_FILE_PATH)
-    val accountStatFile = File(ACCOUNT_STAT_FILE_PATH)
     var accountId = ""
 
     fun setId(input: String) {
@@ -19,30 +14,27 @@ object User {
 
     fun logout() {
         accountId = ""
+        StateManager.updateState()
     }
 
     // 새 계정 생성
     fun saveAccount(username: String, password: String) {
         val accountData = "$username,$password"
         val accountStatData = QuizStat().copy(userId = username)
-        accountFile.appendText(accountData+"\n")
-        accountStatFile.appendText(accountStatData.toString()+"\n")
+        UserRepository.saveAccount(accountData,accountStatData.toString()+"\n")
     }
 
     // 계정 검증
     fun loginUser(username: String, passwordToCheck: String): Boolean {
-        return try {
-            accountFile.useLines { lines ->
-                lines.any { line ->
-                    val parts = line.split(',', limit = 2)
-                    val fileUsername = parts[0]
-                    val filePassword = parts[1]
-                    fileUsername == username && filePassword == passwordToCheck
-                }
+        val totalAccountInfo = UserRepository.getTotalAccountInfo()
+        for (accountData in totalAccountInfo){
+            if (accountData.isNotBlank()){
+                val data = accountData.split(",")
+                if(data[0] == username && data[1] == passwordToCheck) return true
             }
-        } catch (e: Exception) {
-            false
         }
+        return false
     }
+
 }
 

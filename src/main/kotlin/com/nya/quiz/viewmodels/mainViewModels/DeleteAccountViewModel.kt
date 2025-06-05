@@ -2,13 +2,13 @@ package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.commons.ConsoleManager
 import com.nya.quiz.models.User
+import com.nya.quiz.models.UserRepository
+import com.nya.quiz.models.rank.UserStatRepositoryImpl
 import com.nya.quiz.views.mainview.DeleteAccount
-import com.nya.quiz.models.User.accountFile
-import com.nya.quiz.models.User.accountStatFile
 import com.nya.quiz.views.startview.EntryMain
 
 
-class DeleteAccountViewModel(id: String) {
+class DeleteAccountViewModel() {
     val deleteAccount = DeleteAccount()
     val entryMain = EntryMain()
 
@@ -17,16 +17,20 @@ class DeleteAccountViewModel(id: String) {
         while (true) {
             val input = ConsoleManager.consoleLine()
             if (input == "1") {
-                val accountsToKeep = accountFile.readLines().filter { line ->
-                    line.split(',')[0] != User.getId()
+                val totalAccountData = UserRepository.getTotalAccountInfo()
+                val totalUserStatData = UserStatRepositoryImpl.getTotalUserInfo()
+                val accountStr = StringBuilder()
+                val userStatStr = StringBuilder()
+
+                for (accountData in totalAccountData){
+                    if (accountData.split(",")[0] != User.getId()) accountStr.append(accountData + "\n")
                 }
-                accountFile.writeText(accountsToKeep.joinToString(separator = "\n"))
-                accountFile.appendText("\n")
-                val statusToKeep = accountStatFile.readLines().filter { line ->
-                    line.split('|')[0] != User.getId()
+
+                for (userStatData in totalUserStatData){
+                    if (userStatData.userId != User.getId()) userStatStr.append(userStatData.toString() + "\n")
                 }
-                accountStatFile.writeText(statusToKeep.joinToString(separator = "\n"))
-                accountStatFile.appendText("\n")
+
+                UserRepository.updateAccountFile(accountStr.toString(),userStatStr.toString())
 
                 deleteAccount.completeMessage()
                 User.logout()

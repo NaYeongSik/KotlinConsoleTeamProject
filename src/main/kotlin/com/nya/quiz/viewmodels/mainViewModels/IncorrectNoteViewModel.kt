@@ -1,13 +1,12 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
-import com.nya.quiz.models.rank.RankingRepositoryImpl
+import com.nya.quiz.commons.WORD_NOTE_REGEX
+import com.nya.quiz.models.rank.UserStatRepositoryImpl
 
 class IncorrectNoteViewModel{
 
-    private val rankingRepository = RankingRepositoryImpl
-
     fun getMyIncorrectNote(): String{
-        var myProfile = rankingRepository.profile
+        var myProfile = UserStatRepositoryImpl.profile
         var quizList = myProfile.incorrectQuiz
         var stringBuilder = StringBuilder()
 
@@ -16,7 +15,8 @@ class IncorrectNoteViewModel{
         } else {
 
             val lastQuizListStr = quizList.last()
-            val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            //val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            val regex = Regex(WORD_NOTE_REGEX)
             val formattedList = regex.findAll(lastQuizListStr).map { match ->
                 val word = match.groupValues[1].trim()
                 val meanings = match.groupValues[2].split(',').map { it.trim() }.joinToString(", ")
@@ -35,9 +35,7 @@ class IncorrectNoteViewModel{
         return stringBuilder.toString()
     }
 
-    fun deleteMyIncorrectNote(): Boolean{
-        return rankingRepository.deleteInfo(rankingRepository.profile.userId)
-    }
+    fun deleteMyIncorrectNote()= UserStatRepositoryImpl.deleteInfo(UserStatRepositoryImpl.profile.userId)
 
 }
 

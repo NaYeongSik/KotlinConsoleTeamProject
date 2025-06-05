@@ -13,3 +13,10 @@ const val RETURN_MAIN_MENU = "메인 메뉴로 돌아갑니다.\n"
 // 유효성 검사 (정규표현식)
 const val START_MENU_REGEX = "^\\s*[1-4]\\s*\$" // 숫자 1~4 및 앞뒤로 공백 허용
 const val MAIN_MENU_REGEX = "^\\s*[1-7]\\s*\$" // 숫자 1~7 및 앞뒤로 공백 허용
+const val WORD_NOTE_REGEX = """QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""" // 단어집
+
+
+// 파일
+const val WORD_NOTE_FILE_PATH = "src/main/resources/수능필수영단어600.txt"
+const val USER_STAT_FILE_PATH = "src/main/resources/userStatInfo.txt"
+const val ACCOUNT_FILE_PATH = "src/main/resources/account.txt"

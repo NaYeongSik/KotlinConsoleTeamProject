@@ -3,3 +3,6 @@ dudtlr819|50.0|10|10|[QuizWord(word=steep, meanings=[가파른, 깎아지른 듯
 nadudtlr|70.0|14|6|[QuizWord(word=reproduction, meanings=[재생, 복제, 번식]), QuizWord(word=manipulation, meanings=[조작, 속임]), QuizWord(word=adequate, meanings=[어울리는, 적당한]), QuizWord(word=inspire, meanings=[격려하다, 영감을 주다]), QuizWord(word=appreciation, meanings=[감사, 감상, 이해]), QuizWord(word=artificial, meanings=[인공적인, 인위적인])]
 test|73.333336|22|8|[QuizWord(word=invisible, meanings=[눈에 보이지 않는]), QuizWord(word=worship, meanings=[숭배  숭배하다]), QuizWord(word=modify, meanings=[수정하다]), QuizWord(word=dread, meanings=[두려워하다, 무서워하다]), QuizWord(word=nervous, meanings=[불안해 하는, 신경의]), QuizWord(word=incorporate, meanings=[통합하다, 포함하다]), QuizWord(word=plot, meanings=[음모, 줄거리]), QuizWord(word=evaluate, meanings=[평가하다])]
 wasd|0.0|0|0|
+android|82.5|33|7|[QuizWord(word=bite, meanings=[물기, 한 입  물다, 물어뜯다]), QuizWord(word=donation, meanings=[기증, 기증품]), QuizWord(word=engage in, meanings=[~에 종사하다, ~에 참여하게 하다]), QuizWord(word=skip, meanings=[거르다, 건너뛰다]), QuizWord(word=transition, meanings=[과도기, 변이]), QuizWord(word=aim, meanings=[목적, 목표 겨누다, 목표삼다]), QuizWord(word=nuclear, meanings=[핵의])]
+asdf|0.0|0|0|
+test2|0.0|0|0|

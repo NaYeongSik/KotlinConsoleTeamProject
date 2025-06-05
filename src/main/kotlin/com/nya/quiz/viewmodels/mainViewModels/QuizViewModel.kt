@@ -1,13 +1,11 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.commons.QuizCounter
-import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.commons.QuizTimeLimit
-import com.nya.quiz.commons.ViewState
-import com.nya.quiz.file.IncorrectNoteFileManager
+import com.nya.quiz.commons.WORD_NOTE_REGEX
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.models.QuizWord
-import com.nya.quiz.models.rank.RankingRepositoryImpl
+import com.nya.quiz.models.rank.UserStatRepositoryImpl
 import kotlinx.coroutines.*
 
 class QuizViewModel {
@@ -24,15 +22,17 @@ class QuizViewModel {
 
 
     fun loadQuizWords(){
-        val lines = quizFileManager.readFile() ?: emptyList()
-        quizWords = lines.mapNotNull { line ->
-            val parts = line.split('\t')
-            if (parts.size < 3) return@mapNotNull null
-            val word = parts[1].trim()
-            val meanings = parts[2]
-                .split(',')
-                .map { it.replace(Regex("\\([^)]*\\)"), "").trim() }
-            QuizWord(word, meanings)
+        runBlocking(Dispatchers.IO) {
+            val lines = quizFileManager.readFile() ?: emptyList()
+            quizWords = lines.mapNotNull { line ->
+                val parts = line.split('\t')
+                if (parts.size < 3) return@mapNotNull null
+                val word = parts[1].trim()
+                val meanings = parts[2]
+                    .split(',')
+                    .map { it.replace(Regex("\\([^)]*\\)"), "").trim() }
+                QuizWord(word, meanings)
+            }
         }
     }
 
@@ -71,9 +71,10 @@ class QuizViewModel {
 
     // 퀴즈 시작 전 기존 오답 불러오는 함수
     fun loadIncorrectWordsFromProfile() {
-        val lastIncorrectListStr = RankingRepositoryImpl.profile.incorrectQuiz.lastOrNull()
+        val lastIncorrectListStr = UserStatRepositoryImpl.profile.incorrectQuiz.lastOrNull()
         if (lastIncorrectListStr != null && lastIncorrectListStr.isNotBlank()) {
-            val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            //val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            val regex = Regex(WORD_NOTE_REGEX)
             val parsed = regex.findAll(lastIncorrectListStr).map { match ->
                 val word = match.groupValues[1].trim()
                 val meanings = match.groupValues[2].split(',').map { it.trim() }
@@ -92,15 +93,15 @@ class QuizViewModel {
         }
         // 중복 제거
         val distinctIncorrectWords = incorrectWords.distinct()
-        RankingRepositoryImpl.profile.incorrectQuiz =
-            RankingRepositoryImpl.profile.incorrectQuiz.dropLast(1) + listOf(distinctIncorrectWords.toString())
+        UserStatRepositoryImpl.profile.incorrectQuiz =
+            UserStatRepositoryImpl.profile.incorrectQuiz.dropLast(1) + listOf(distinctIncorrectWords.toString())
     }
 
     fun saveCorrectCount(correct: Int){
-        RankingRepositoryImpl.profile.correctCount += correct
+        UserStatRepositoryImpl.profile.correctCount += correct
     }
     fun saveIncorrectCount(incorrect: Int){
-        RankingRepositoryImpl.profile.incorrectCount += incorrect
+        UserStatRepositoryImpl.profile.incorrectCount += incorrect
     }
 
     // 정답률 계산
@@ -111,6 +112,6 @@ class QuizViewModel {
 
     //정답률 저장
     fun saveCalculateCorrectRate(correctRate: Float){
-        RankingRepositoryImpl.profile.correctRate = correctRate
+        UserStatRepositoryImpl.profile.correctRate = correctRate
     }
 }

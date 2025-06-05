@@ -2,15 +2,16 @@ package com.nya.quiz.viewmodels.mainViewModels
 
 import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.models.rank.RankingModel
-import com.nya.quiz.models.rank.RankingRepositoryImpl
+import com.nya.quiz.models.rank.UserStatRepositoryImpl
 
-class RankingViewModel(private val rankingModel: RankingModel){
+class RankingViewModel(){
+    private val rankingModel = RankingModel()
 
     private var sortedRankList: List<QuizStat> = emptyList()
 
     private fun requestTotalRanking() = rankingModel.getTotalRanking()
 
-    fun getMyRank(): String = getMyRankingData(RankingRepositoryImpl.profile.userId)
+    fun getMyRank(): String = getMyRankingData(UserStatRepositoryImpl.profile.userId)
 
     fun getTopRank(): List<String>{
         val topRankList = mutableListOf<String>()
@@ -20,10 +21,8 @@ class RankingViewModel(private val rankingModel: RankingModel){
     }
 
     fun setRankingData(): Boolean {
-        runCatching {
-            var totalData = requestTotalRanking()
-            sortedRankList = sortRanking(totalData)
-        }.onFailure { return false }
+        var totalData = requestTotalRanking()
+        sortedRankList = sortRanking(totalData)
         return if (sortedRankList.isNotEmpty()) true else false
     }
 
