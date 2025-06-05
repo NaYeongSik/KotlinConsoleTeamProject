@@ -24,8 +24,6 @@ object StateManager {
     /**
      * Update state
      * 현재 상태와 사용자 입력값을 종합해 상태를 변경하기 위한 함수. (ex. 로그인 성공시, 로그아웃시, 종료시)
-     * 예시로 구현 해놓은거라 수정 필요. (구체적인 처리는 각각 부분에서 처리하고, 해당 부분에서는 상태만 변경하는 방식으로 변경이 필요할 것 같아요)
-     * @param line : Test를 위해 잠시 파라미터로 받았습니다.
      */
     fun updateState() {
         when (this.state) {
@@ -37,7 +35,7 @@ object StateManager {
                 if (User.getId().isEmpty()) setState(ViewState.START_VIEW)
                 if (User.getId().isNotEmpty()) setState(ViewState.END_VIEW)
             }
-            ViewState.END_VIEW -> TODO()
+            ViewState.END_VIEW -> setState(ViewState.END_VIEW)
         }
     }
 }
