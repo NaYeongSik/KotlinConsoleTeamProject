@@ -1,44 +1,21 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
+import com.nya.quiz.commons.quizWordRegex
 import com.nya.quiz.file.IncorrectNoteFileManager
-import com.nya.quiz.models.QuizWord
-import com.nya.quiz.models.rank.RankingRepositoryImpl
+import com.nya.quiz.interfaces.QuizRepository
+import com.nya.quiz.models.quiz.QuizWord
 
-class RetryIncorrectWordViewModel{
+class RetryIncorrectWordViewModel(
+    private val quizRepository: QuizRepository
+){
     private val incorrectNoteFileManager = IncorrectNoteFileManager()
 
     var incorrectNoteQuizWords: List<QuizWord> = emptyList()
         private set
 
-
-
-
-    fun loadIncorrectNoteQuizWords(userId: String){
-        val lines = incorrectNoteFileManager.readFile() ?: emptyList()
-
-        val line = lines.firstOrNull { it.startsWith("$userId|") } ?: return
-
-        val parts =  line.split('|')
-        if (parts.size < 5) {
-            incorrectNoteQuizWords = emptyList()
-            return
-        }
-
-        val incorrectQuizStr = parts.subList(4, parts.size).joinToString("|")
-
-        val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
-        val quizWord = regex.findAll(incorrectQuizStr).mapNotNull { match ->
-            val word = match.groupValues[1].trim()
-            val meaningsStr = match.groupValues[2]
-            val meanings = meaningsStr.split(',')
-                .map {it.trim()}
-                .filter {it.isNotEmpty()}
-            QuizWord(word, meanings)
-        }.toList()
-
-        incorrectNoteQuizWords = quizWord
+    suspend fun loadIncorrectNoteQuizWords(userId: String) {
+        incorrectNoteQuizWords = quizRepository.loadIncorrectNoteQuizWords(userId)
     }
-
 
     fun getRandomQuiz(counter: Int): List<QuizWord> = incorrectNoteQuizWords.shuffled().take(counter)
 

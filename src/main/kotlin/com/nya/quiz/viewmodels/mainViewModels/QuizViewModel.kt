@@ -1,39 +1,26 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
-import com.nya.quiz.commons.QuizCounter
-import com.nya.quiz.commons.QuizStat
-import com.nya.quiz.commons.QuizTimeLimit
-import com.nya.quiz.commons.ViewState
-import com.nya.quiz.file.IncorrectNoteFileManager
+import com.nya.quiz.commons.*
 import com.nya.quiz.file.QuizFileManager
-import com.nya.quiz.models.QuizWord
+import com.nya.quiz.interfaces.QuizRepository
+import com.nya.quiz.models.quiz.QuizWord
 import com.nya.quiz.models.rank.RankingRepositoryImpl
 import kotlinx.coroutines.*
 
-class QuizViewModel {
-    private val quizFileManager = QuizFileManager()
-
+class QuizViewModel(
+    private val quizRepository: QuizRepository
+) {
     var quizWords: List<QuizWord> = emptyList()
         private set
 
     private var timeLimitSec: Int = QuizTimeLimit.SHORT.time
-
     private val incorrectWords = mutableListOf<QuizWord>()
-
     private var timerJob: Job? = null
 
 
-    fun loadQuizWords(){
-        val lines = quizFileManager.readFile() ?: emptyList()
-        quizWords = lines.mapNotNull { line ->
-            val parts = line.split('\t')
-            if (parts.size < 3) return@mapNotNull null
-            val word = parts[1].trim()
-            val meanings = parts[2]
-                .split(',')
-                .map { it.replace(Regex("\\([^)]*\\)"), "").trim() }
-            QuizWord(word, meanings)
-        }
+
+    suspend fun loadQuizWords(){
+        quizWords = quizRepository.loadQuizWords()
     }
 
     fun setTimeLimit(timeLimit: QuizTimeLimit){
@@ -73,7 +60,7 @@ class QuizViewModel {
     fun loadIncorrectWordsFromProfile() {
         val lastIncorrectListStr = RankingRepositoryImpl.profile.incorrectQuiz.lastOrNull()
         if (lastIncorrectListStr != null && lastIncorrectListStr.isNotBlank()) {
-            val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            val regex = quizWordRegex()
             val parsed = regex.findAll(lastIncorrectListStr).map { match ->
                 val word = match.groupValues[1].trim()
                 val meanings = match.groupValues[2].split(',').map { it.trim() }

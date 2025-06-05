@@ -17,6 +17,7 @@ fun isValid(line: String): Boolean {
         else -> true
     }
 }
+
 fun isUsernameExist(username: String): Boolean {
     return try {
         accountFile.useLines { lines ->
@@ -56,3 +57,10 @@ fun isValidPassword(password: String): Pair<Boolean, String> {
     }
     return true to ""
 }
+
+// Regex를 함수로
+fun quizWordRegex():Regex {
+    return Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+}
+
+

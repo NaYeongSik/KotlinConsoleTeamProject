@@ -137,7 +137,11 @@ fun printMenuMessage() {
 }
 
 fun initRankingService(){
-    if (!::rankingModel.isInitialized) rankingModel = RankingFactory(RankingRepositoryImpl).create()
+    /* 인스턴화 시켰을 때 */
+//    val rankingRepositoryImpl = RankingRepositoryImpl
+//    if (!::rankingModel.isInitialized) rankingModel = RankingFactory(rankingRepositoryImpl).create()
+
+    if (!::rankingModel.isInitialized) rankingModel = RankingFactory().create()
     if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingModel)
     if (!::rankingView.isInitialized) rankingView = RankingView(rankingViewModel)
 }

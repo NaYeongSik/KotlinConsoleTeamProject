@@ -37,7 +37,7 @@ object SignUpViewModel {
 
         while (true) {
             print("비밀번호를 다시 한번 입력하세요: ")
-            val confirmPassword = readLine() ?: ""
+            val confirmPassword = ConsoleManager.consoleLine() ?: ""
             if (password == confirmPassword) {
                 println("비밀번호가 확인되었습니다.")
                 User.saveAccount(username, password)

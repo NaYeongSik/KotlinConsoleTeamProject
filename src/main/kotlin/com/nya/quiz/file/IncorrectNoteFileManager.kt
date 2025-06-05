@@ -3,10 +3,12 @@ package com.nya.quiz.file
 import com.nya.quiz.interfaces.DeletableFile
 import com.nya.quiz.interfaces.ReadableFile
 import com.nya.quiz.interfaces.WritableFile
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class IncorrectNoteFileManager(
-    override val fileName: String = "src/main/resources/userStatInfo.txt"
+    fileName: String = "src/main/resources/userStatInfo.txt"
 ): WritableFile,ReadableFile,DeletableFile {
 
     val file = File(fileName)
@@ -15,12 +17,12 @@ class IncorrectNoteFileManager(
         TODO("Not yet implemented")
     }
 
-    override fun readFile(): List<String>? {
+    override suspend fun readFile(): List<String>? = withContext(Dispatchers.IO){
         runCatching {
-            if (!file.exists()) return null
-            return file.bufferedReader().use { reader -> reader.readLines() }
+            if (!file.exists()) return@withContext null
+            file.bufferedReader().use { reader -> reader.readLines() }
         }.onFailure { println("정보를 가져오지 못했습니다.") }
-        return null
+            .getOrNull()
     }
 
     override fun writeFile(text: String): Boolean {

@@ -1,6 +1,4 @@
-package com.nya.quiz.models
-
-import com.nya.quiz.interfaces.Solvable
+package com.nya.quiz.models.quiz
 
 data class Quiz(
     val totalQuestions: Int,

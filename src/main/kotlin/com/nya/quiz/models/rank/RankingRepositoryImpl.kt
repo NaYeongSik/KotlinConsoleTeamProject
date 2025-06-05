@@ -1,8 +1,11 @@
 package com.nya.quiz.models.rank
 
 import com.nya.quiz.commons.QuizStat
+import com.nya.quiz.commons.QuizStatMapper
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.interfaces.rank.RankingRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 object RankingRepositoryImpl : RankingRepository {
 
@@ -11,30 +14,37 @@ object RankingRepositoryImpl : RankingRepository {
     lateinit var profile: QuizStat
 
     override fun getTotalRanking(): List<QuizStat> {
-        var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
+        val totalData = runBlocking(Dispatchers.IO) {
+            incorrectNoteFileManager.readFile() ?: emptyList()
+        }
         val quizStatsList = mutableListOf<QuizStat>()
 
         for (data: String in totalData) {
-            if (data.isNotBlank()) quizStatsList.add(convertToQuizStat(data))
+            if (data.isNotBlank()) quizStatsList.add(QuizStatMapper.convertToQuizStat(data))
         }
         return quizStatsList
     }
 
     override fun recordRanking(data: QuizStat): Boolean {
         runCatching {
-            incorrectNoteFileManager.writeFile(data.toString())
+            runBlocking(Dispatchers.IO) {
+                incorrectNoteFileManager.writeFile(data.toString())
+            }
         }.onSuccess { return true }.onFailure { return false }
         return false
     }
 
     override fun updateRanking(updateData: QuizStat): Boolean {
         runCatching {
-            var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
+            val totalData = runBlocking(Dispatchers.IO) {
+                incorrectNoteFileManager.readFile() ?: emptyList()
+            }
             var strBuilder = kotlin.text.StringBuilder()
 
             for (data: String in totalData) {
                 if (data.isNotBlank()) {
-                    if (!data.split("|")[0].trim().equals(updateData.userId)) {
+                    // equals 수정
+                    if (data.split("|")[0].trim() != (updateData.userId)) {
                         strBuilder.append(data)
                         strBuilder.append("\n")
                     } else {
@@ -50,7 +60,9 @@ object RankingRepositoryImpl : RankingRepository {
 
     override fun deleteInfo(id: String): Boolean {
         runCatching {
-            var totalData = incorrectNoteFileManager.readFile() ?: emptyList()
+            val totalData = runBlocking(Dispatchers.IO) {
+                incorrectNoteFileManager.readFile() ?: emptyList()
+            }
             var strBuilder = StringBuilder()
 
             for (data: String in totalData) {
@@ -70,28 +82,11 @@ object RankingRepositoryImpl : RankingRepository {
         return false
     }
 
-    fun setMyProfile(userId: String){
+    fun setMyProfile(userId: String) {
         var totalList = getTotalRanking()
-        profile = totalList.find {
-                it ->
+        profile = totalList.find { it ->
             it.userId == userId
-        }?: QuizStat(userId)
+        } ?: QuizStat(userId)
     }
-
-    fun convertToQuizStat(data: String): QuizStat {
-        var dataList = data.split("|")
-        var userId = dataList[0].trim()
-        var correctRate = dataList[1].trim().toFloat()
-        var correctCount = dataList[2].trim().toInt()
-        var incorrectCount = dataList[3].trim().toInt()
-
-        val incorrectQuiz = if (dataList.size > 4) {
-            dataList.subList(4, dataList.size).map { it.trim() }.filter { it.isNotEmpty() }
-        } else {
-            emptyList<String>()
-        }
-        return QuizStat(userId, correctRate, correctCount, incorrectCount, incorrectQuiz)
-    }
-
 
 }
