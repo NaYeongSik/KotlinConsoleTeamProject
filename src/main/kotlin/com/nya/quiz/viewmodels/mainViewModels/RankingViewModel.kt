@@ -33,7 +33,7 @@ class RankingViewModel(private val rankingModel: RankingModel){
         var userId = data.userId
         var rank = if (total > 0) index+1 else "-"
 
-        return " ${rank} 위 ${userId} 님, 정답률: ${correctRate}%, 진행한 문제: ${total}문제"
+        return " $rank 위 $userId 님, 정답률: ${correctRate}%, 진행한 문제: ${total}문제"
     }
 
     private fun sortRanking(data: List<QuizStat>): List<QuizStat>{

@@ -8,8 +8,13 @@ const val INVALID_MESSAGE = "유효하지 않은 입력 값 입니다."
 const val INCORRECT_NOTE_INIT_SUCCESS = "내 오답노트를 초기화 했습니다.\n"
 const val INCORRECT_NOTE_INIT_FAIL = "내 오답노트 초기화를 실패했습니다.\n"
 const val RETURN_MAIN_MENU = "메인 메뉴로 돌아갑니다.\n"
+const val ACCOUNT_FILE_DELIMITER = ","
+const val USERSTATINFO_FILE_DELIMITER = "|"
+const val INPUT_YES = "1"
+const val INPUT_NO = "2"
 
 
 // 유효성 검사 (정규표현식)
 const val START_MENU_REGEX = "^\\s*[1-4]\\s*\$" // 숫자 1~4 및 앞뒤로 공백 허용
 const val MAIN_MENU_REGEX = "^\\s*[1-7]\\s*\$" // 숫자 1~7 및 앞뒤로 공백 허용
+const val QUIZ_FILE_REGEX = """QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)"""

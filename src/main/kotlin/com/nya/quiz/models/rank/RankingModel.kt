@@ -3,9 +3,9 @@ package com.nya.quiz.models.rank
 import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.interfaces.rank.RankingService
 
-class RankingModel(private val rankingModel : RankingRepositoryImpl): RankingService {
+class RankingModel(): RankingService {
 
-    override fun getTotalRanking(): List<QuizStat> = rankingModel.getTotalRanking()
+    override fun getTotalRanking(): List<QuizStat> = RankingRepositoryImpl.getTotalRanking()
 
     override fun recordRanking(id: String, score: Float): Boolean {
         TODO("Not yet implemented")

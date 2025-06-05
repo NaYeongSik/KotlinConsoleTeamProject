@@ -1,13 +1,13 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
+import com.nya.quiz.commons.QUIZ_FILE_REGEX
 import com.nya.quiz.models.rank.RankingRepositoryImpl
 
-class IncorrectNoteViewModel{
+class IncorrectNoteViewModel {
 
-    private val rankingRepository = RankingRepositoryImpl
 
-    fun getMyIncorrectNote(): String{
-        var myProfile = rankingRepository.profile
+    fun getMyIncorrectNote(): String {
+        var myProfile = RankingRepositoryImpl.profile
         var quizList = myProfile.incorrectQuiz
         var stringBuilder = StringBuilder()
 
@@ -16,17 +16,16 @@ class IncorrectNoteViewModel{
         } else {
 
             val lastQuizListStr = quizList.last()
-            val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            val regex = Regex(QUIZ_FILE_REGEX)
             val formattedList = regex.findAll(lastQuizListStr).map { match ->
                 val word = match.groupValues[1].trim()
-                val meanings = match.groupValues[2].split(',').map { it.trim() }.joinToString(", ")
+                val meanings = match.groupValues[2].split(',').joinToString(", ") { it.trim() }
                 "$word : $meanings"
             }.toList()
 
             // 5개씩 한 줄에 출력
             formattedList.chunked(5).forEach { lineList ->
-                stringBuilder.append(lineList.joinToString("    "))
-                stringBuilder.append("\n")
+                stringBuilder.append(lineList.joinToString("    ") + "\n")
             }
         }
 
@@ -35,9 +34,5 @@ class IncorrectNoteViewModel{
         return stringBuilder.toString()
     }
 
-    fun deleteMyIncorrectNote(): Boolean{
-        return rankingRepository.deleteInfo(rankingRepository.profile.userId)
-    }
-
+    fun deleteMyIncorrectNote() = RankingRepositoryImpl.deleteInfo(RankingRepositoryImpl.profile.userId)
 }
-

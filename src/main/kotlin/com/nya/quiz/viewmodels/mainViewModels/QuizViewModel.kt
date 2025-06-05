@@ -1,10 +1,8 @@
 package com.nya.quiz.viewmodels.mainViewModels
 
+import com.nya.quiz.commons.QUIZ_FILE_REGEX
 import com.nya.quiz.commons.QuizCounter
-import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.commons.QuizTimeLimit
-import com.nya.quiz.commons.ViewState
-import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.models.QuizWord
 import com.nya.quiz.models.rank.RankingRepositoryImpl
@@ -24,16 +22,7 @@ class QuizViewModel {
 
 
     fun loadQuizWords(){
-        val lines = quizFileManager.readFile() ?: emptyList()
-        quizWords = lines.mapNotNull { line ->
-            val parts = line.split('\t')
-            if (parts.size < 3) return@mapNotNull null
-            val word = parts[1].trim()
-            val meanings = parts[2]
-                .split(',')
-                .map { it.replace(Regex("\\([^)]*\\)"), "").trim() }
-            QuizWord(word, meanings)
-        }
+        quizFileManager.loadFilteredQuizTxtFile()
     }
 
     fun setTimeLimit(timeLimit: QuizTimeLimit){
@@ -73,7 +62,7 @@ class QuizViewModel {
     fun loadIncorrectWordsFromProfile() {
         val lastIncorrectListStr = RankingRepositoryImpl.profile.incorrectQuiz.lastOrNull()
         if (lastIncorrectListStr != null && lastIncorrectListStr.isNotBlank()) {
-            val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
+            val regex = Regex(QUIZ_FILE_REGEX)
             val parsed = regex.findAll(lastIncorrectListStr).map { match ->
                 val word = match.groupValues[1].trim()
                 val meanings = match.groupValues[2].split(',').map { it.trim() }

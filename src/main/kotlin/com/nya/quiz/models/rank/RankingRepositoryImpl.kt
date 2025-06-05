@@ -3,6 +3,9 @@ package com.nya.quiz.models.rank
 import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.interfaces.rank.RankingRepository
+import com.nya.quiz.models.QuizStatMapper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 object RankingRepositoryImpl : RankingRepository {
 
@@ -22,7 +25,9 @@ object RankingRepositoryImpl : RankingRepository {
 
     override fun recordRanking(data: QuizStat): Boolean {
         runCatching {
-            incorrectNoteFileManager.writeFile(data.toString())
+            runBlocking(Dispatchers.IO) {
+                incorrectNoteFileManager.writeFile(data.toString())
+            }
         }.onSuccess { return true }.onFailure { return false }
         return false
     }
@@ -34,7 +39,7 @@ object RankingRepositoryImpl : RankingRepository {
 
             for (data: String in totalData) {
                 if (data.isNotBlank()) {
-                    if (!data.split("|")[0].trim().equals(updateData.userId)) {
+                    if (data.split("|")[0].trim() != updateData.userId) {
                         strBuilder.append(data)
                         strBuilder.append("\n")
                     } else {
@@ -70,28 +75,12 @@ object RankingRepositoryImpl : RankingRepository {
         return false
     }
 
-    fun setMyProfile(userId: String){
+    fun setMyProfile(userId: String) {
         var totalList = getTotalRanking()
-        profile = totalList.find {
-                it ->
+        profile = totalList.find { it ->
             it.userId == userId
-        }?: QuizStat(userId)
+        } ?: QuizStat(userId)
     }
 
-    fun convertToQuizStat(data: String): QuizStat {
-        var dataList = data.split("|")
-        var userId = dataList[0].trim()
-        var correctRate = dataList[1].trim().toFloat()
-        var correctCount = dataList[2].trim().toInt()
-        var incorrectCount = dataList[3].trim().toInt()
-
-        val incorrectQuiz = if (dataList.size > 4) {
-            dataList.subList(4, dataList.size).map { it.trim() }.filter { it.isNotEmpty() }
-        } else {
-            emptyList<String>()
-        }
-        return QuizStat(userId, correctRate, correctCount, incorrectCount, incorrectQuiz)
-    }
-
-
+    fun convertToQuizStat(data: String) = QuizStatMapper.filterQuizStat(data)
 }

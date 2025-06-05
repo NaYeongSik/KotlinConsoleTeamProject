@@ -1,5 +1,6 @@
 package com.nya.quiz.views.mainview
 
+import com.nya.quiz.commons.ConsoleManager
 import com.nya.quiz.commons.QuizCounter
 import com.nya.quiz.commons.QuizTimeLimit
 import com.nya.quiz.models.QuizWord
@@ -70,7 +71,7 @@ class QuizView(private val viewModel: QuizViewModel){
                         "\n풀이를 중단하려면 0번을 입력해주세요"
             )
 
-            val userInput = readLine()
+            val userInput = ConsoleManager.consoleLine()
 
             if (userInput?.trim() == "0") {
                 if (confirmStopQuiz()) {
@@ -147,7 +148,7 @@ class QuizView(private val viewModel: QuizViewModel){
 
     private fun askContinueOrFinish() {
         println("퀴즈를 이어서 풀겠습니까? (1: 이어서 풀기 / 2: 종료)")
-        when(readLine()?.trim()){
+        when(ConsoleManager.consoleLine()){
             "1" -> show()
             "2" -> null
             else -> {
@@ -160,7 +161,7 @@ class QuizView(private val viewModel: QuizViewModel){
     private fun confirmStopQuiz(): Boolean {
         while (true) {
             println("정말 풀이를 종료하시겠습니까? (1: 예 / 2: 아니오)")
-            when (readLine()?.trim()) {
+            when (ConsoleManager.consoleLine()) {
                 "1" -> return true  // 종료
                 "2" -> return false // 계속 풀이
                 else -> println("잘못된 입력입니다. 다시 입력해 주세요.")

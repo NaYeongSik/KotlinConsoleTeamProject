@@ -9,7 +9,7 @@ class RetryIncorrectWordView(private val viewModel: RetryIncorrectWordViewModel)
 
     fun show() {
         val incorrectQuiz = RankingRepositoryImpl.profile.incorrectQuiz
-        if (incorrectQuiz.isNullOrEmpty()) {
+        if (incorrectQuiz.isEmpty()) {
             println("저장된 오답문제가 없어 풀이가 불가능합니다.")
             return
         }

@@ -32,7 +32,7 @@ lateinit var rankingView: RankingView
  * Start program
  * 콘솔 프로그램 시작 부분. State가 END_VIEW로 바뀔때까지 동작 (END_VIEW는 시작메뉴 or 메인메뉴에서 종료 입력시 State 변경. 아직 미구현)
  */
-fun startProgram() {
+suspend fun startProgram() {
 
     while (!StateManager.isEndState()) { // State가 END_VIEW 일때 프로그램 종료
         printMenuMessage()
@@ -85,7 +85,7 @@ fun runStartMenuProcess(line: String) {
  *  ** 현재 Main에 정의해놨으나, MVVM 패턴에 맞게 수정 필요. **
  * @param line : 사용자 입력 값 (1~7). 사용자가 입력한 메뉴 프로세스 진행
  */
-fun runMainMenuProcess(line: String) {
+suspend fun runMainMenuProcess(line: String) {
     initRankingService()
     when (MainMenuState.fromInt(line.trim().toInt())) {
         MainMenuState.START_QUIZ -> {
@@ -137,11 +137,11 @@ fun printMenuMessage() {
 }
 
 fun initRankingService(){
-    if (!::rankingModel.isInitialized) rankingModel = RankingFactory(RankingRepositoryImpl).create()
+    if (!::rankingModel.isInitialized) rankingModel = RankingFactory().create()
     if (!::rankingViewModel.isInitialized) rankingViewModel = RankingViewModel(rankingModel)
     if (!::rankingView.isInitialized) rankingView = RankingView(rankingViewModel)
 }
 
-fun main() {
+suspend fun main() {
     startProgram()
 }
