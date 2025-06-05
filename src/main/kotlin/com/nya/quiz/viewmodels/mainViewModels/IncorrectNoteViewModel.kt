@@ -3,6 +3,9 @@ package com.nya.quiz.viewmodels.mainViewModels
 import com.nya.quiz.commons.quizWordRegex
 import com.nya.quiz.models.rank.RankingRepositoryImpl
 
+/** RankingRepositoryImpl가 Object라 바로 호출 **/
+
+
 class IncorrectNoteViewModel{
 
 //    private val rankingRepository = RankingRepositoryImpl
@@ -26,7 +29,7 @@ class IncorrectNoteViewModel{
                 val meanings = match.groupValues[2].split(',').map { it.trim() }.joinToString(", ")
                 "$word : $meanings"
             }.toList()
-
+            /************* with 사용 ***************/
             // 5개씩 한 줄에 출력
             formattedList.chunked(5).forEach { lineList ->
                 // with 함수 사용
@@ -47,7 +50,7 @@ class IncorrectNoteViewModel{
 //    fun deleteMyIncorrectNote(): Boolean{
 //        return rankingRepository.deleteInfo(rankingRepository.profile.userId)
 //    }
-    // 1줄로 표현과 RankingRepositoryImpl 가 Object 여서 바로 호출하는 방법 선택
+    /**** 1줄로 표현과 RankingRepositoryImpl 가 Object 여서 바로 호출하는 방법 선택 ****/
     fun deleteMyIncorrectNote() = RankingRepositoryImpl.deleteInfo(RankingRepositoryImpl.profile.userId)
 
 }

@@ -5,6 +5,7 @@ import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.interfaces.QuizRepository
 
+/** viewModel에서 파일입출력하는 함수를 Repo로 이동 **/
 object QuizRepositoryImpl: QuizRepository {
 
     private val quizFileManager =  QuizFileManager()

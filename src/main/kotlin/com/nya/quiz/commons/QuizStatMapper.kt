@@ -1,5 +1,6 @@
 package com.nya.quiz.commons
 
+/** Mapper를 사용하여 객체를 리턴할수 있도록 함 **/
 
 // 오브젝트로 하는것이 좋은지 함수로만 두는것이 좋은지 궁금합니다.
 object QuizStatMapper {}

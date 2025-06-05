@@ -29,6 +29,7 @@ lateinit var rankingModel : RankingModel
 lateinit var rankingViewModel: RankingViewModel
 lateinit var rankingView: RankingView
 
+/** initRankingService함수 Object를 파라미터로 넘겨받을 필요 없기 때문에 인스턴스화 함**/
 
 /**
  * Start program

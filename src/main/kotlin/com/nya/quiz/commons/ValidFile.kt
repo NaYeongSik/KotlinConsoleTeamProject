@@ -2,6 +2,8 @@ package com.nya.quiz.commons
 
 import com.nya.quiz.models.User.accountFile
 
+/** quizWordRegex함수 생성 **/
+
 /**
  * Is valid
  * 각 상태에 따라 사용자 입력 값 유효성 검사 (시작 메뉴 1~4, 메인 메뉴 1~7)

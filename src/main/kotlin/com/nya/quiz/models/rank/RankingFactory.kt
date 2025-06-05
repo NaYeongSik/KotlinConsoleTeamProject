@@ -1,5 +1,5 @@
 package com.nya.quiz.models.rank
-
+/** return이 아닌 식으로 표현 **/
 //class RankingFactory(private val rankingRepository: RankingRepositoryImpl) {
 class RankingFactory {
 //    fun create(): RankingModel {

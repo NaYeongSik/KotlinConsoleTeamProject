@@ -7,6 +7,8 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import java.io.File
 
+/** 코루틴 withContext사용 및 예외처리 **/
+
 class QuizFileManager(
     private val fileName: String = "src/main/resources/수능필수영단어600.txt"
 ) : ReadableFile, WritableFile {

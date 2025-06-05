@@ -4,6 +4,8 @@ import com.nya.quiz.commons.QuizStat
 import com.nya.quiz.commons.StateManager
 import java.io.File
 
+/**loginUser함수 수정 useLines -> readLines 사용**/
+
 object User {
     private const val ACCOUNT_FILE_PATH = "src/main/resources/account.txt"
     private const val ACCOUNT_STAT_FILE_PATH = "src/main/resources/userStatInfo.txt"
