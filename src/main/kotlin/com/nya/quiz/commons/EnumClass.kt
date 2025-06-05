@@ -12,12 +12,6 @@ enum class QuizTimeLimit(val time:Int){
     LONG(45)
 }
 
-enum class LoginState(val state:Int){
-    LOGGED_OUT(0),
-    LOGGED_IN(1),
-    LOGIN_FAILED(2)
-}
-
 enum class ViewState(val state:Int){
     START_VIEW(1),
     MAIN_VIEW(2),

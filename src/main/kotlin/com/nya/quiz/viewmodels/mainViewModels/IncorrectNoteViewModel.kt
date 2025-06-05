@@ -15,7 +15,6 @@ class IncorrectNoteViewModel{
         } else {
 
             val lastQuizListStr = quizList.last()
-            //val regex = Regex("""QuizWord\(word=([^,]+), meanings=\[([^\]]*)\]\)""")
             val regex = Regex(WORD_NOTE_REGEX)
             val formattedList = regex.findAll(lastQuizListStr).map { match ->
                 val word = match.groupValues[1].trim()
