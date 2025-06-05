@@ -1,6 +1,9 @@
 package com.nya.quiz.commons
 
-object QuizStatMapper {
+
+// 오브젝트로 하는것이 좋은지 함수로만 두는것이 좋은지 궁금합니다.
+object QuizStatMapper {}
+
     fun convertToQuizStat(data: String): QuizStat {
         val dataList = data.split("|")
         val userId = dataList[0].trim()
@@ -16,7 +19,4 @@ object QuizStatMapper {
             emptyList()
         }
         return QuizStat(userId, correctRate, correctCount, incorrectCount, incorrectQuiz)
-
     }
-
-}

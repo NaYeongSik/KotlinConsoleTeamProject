@@ -32,7 +32,12 @@ object User {
     // 계정 검증
     fun loginUser(username: String, passwordToCheck: String): Boolean {
         // runCatching으로 변환
-        // runCatching은 try~catch에 비해
+        // runCatching은
+        // 성공 실패에 대한 처리를 onSuccess등으로 체이닝 가능
+        // 결과를 Result<T> 타입으로 감싸 반환
+        // 명령형 분기(if,else,catch) 없이 선언적으로 에러를 다루기 가능
+        // 예외 발생 시 기본값을 쉽게 지정 가능 getOrNull, getOrElse, getOrDefault 등
+        // 코루틴/비동기 환경에서 권장
         return runCatching {
             // readLines는
             // 별도의 람다 블록이나 시퀀스(Sequence)를 사용할 필요 없이,

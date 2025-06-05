@@ -3,10 +3,10 @@ package com.nya.quiz.viewmodels.mainViewModels
 import com.nya.quiz.commons.quizWordRegex
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.interfaces.QuizRepository
+import com.nya.quiz.models.quiz.QuizRepositoryImpl
 import com.nya.quiz.models.quiz.QuizWord
 
 class RetryIncorrectWordViewModel(
-    private val quizRepository: QuizRepository
 ){
     private val incorrectNoteFileManager = IncorrectNoteFileManager()
 
@@ -14,7 +14,7 @@ class RetryIncorrectWordViewModel(
         private set
 
     suspend fun loadIncorrectNoteQuizWords(userId: String) {
-        incorrectNoteQuizWords = quizRepository.loadIncorrectNoteQuizWords(userId)
+        incorrectNoteQuizWords = QuizRepositoryImpl.loadIncorrectNoteQuizWords(userId)
     }
 
     fun getRandomQuiz(counter: Int): List<QuizWord> = incorrectNoteQuizWords.shuffled().take(counter)

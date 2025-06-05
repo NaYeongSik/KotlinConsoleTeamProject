@@ -1,7 +1,7 @@
 package com.nya.quiz.models.rank
 
 import com.nya.quiz.commons.QuizStat
-import com.nya.quiz.commons.QuizStatMapper
+import com.nya.quiz.commons.convertToQuizStat
 import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.interfaces.rank.RankingRepository
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +20,7 @@ object RankingRepositoryImpl : RankingRepository {
         val quizStatsList = mutableListOf<QuizStat>()
 
         for (data: String in totalData) {
-            if (data.isNotBlank()) quizStatsList.add(QuizStatMapper.convertToQuizStat(data))
+            if (data.isNotBlank()) quizStatsList.add(convertToQuizStat(data))
         }
         return quizStatsList
     }

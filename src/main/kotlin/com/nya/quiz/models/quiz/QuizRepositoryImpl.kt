@@ -5,10 +5,10 @@ import com.nya.quiz.file.IncorrectNoteFileManager
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.interfaces.QuizRepository
 
-class QuizRepositoryImpl(
-    private val quizFileManager: QuizFileManager,
-    private val incorrectNoteFileManager: IncorrectNoteFileManager
-) : QuizRepository {
+object QuizRepositoryImpl: QuizRepository {
+
+    private val quizFileManager =  QuizFileManager()
+    private val incorrectNoteFileManager = IncorrectNoteFileManager()
 
     override suspend fun loadQuizWords(): List<QuizWord> {
         val lines = quizFileManager.readFile() ?: emptyList()

@@ -3,12 +3,12 @@ package com.nya.quiz.viewmodels.mainViewModels
 import com.nya.quiz.commons.*
 import com.nya.quiz.file.QuizFileManager
 import com.nya.quiz.interfaces.QuizRepository
+import com.nya.quiz.models.quiz.QuizRepositoryImpl
 import com.nya.quiz.models.quiz.QuizWord
 import com.nya.quiz.models.rank.RankingRepositoryImpl
 import kotlinx.coroutines.*
 
 class QuizViewModel(
-    private val quizRepository: QuizRepository
 ) {
     var quizWords: List<QuizWord> = emptyList()
         private set
@@ -20,7 +20,7 @@ class QuizViewModel(
 
 
     suspend fun loadQuizWords(){
-        quizWords = quizRepository.loadQuizWords()
+        quizWords = QuizRepositoryImpl.loadQuizWords()
     }
 
     fun setTimeLimit(timeLimit: QuizTimeLimit){

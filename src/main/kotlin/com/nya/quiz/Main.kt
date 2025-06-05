@@ -10,7 +10,9 @@ import com.nya.quiz.commons.INVALID_MESSAGE
 import com.nya.quiz.commons.ViewState
 import com.nya.quiz.commons.isValid
 import com.nya.quiz.commons.StartViewState
+import com.nya.quiz.interfaces.QuizRepository
 import com.nya.quiz.models.User
+import com.nya.quiz.models.quiz.QuizRepositoryImpl
 import com.nya.quiz.models.rank.RankingFactory
 import com.nya.quiz.models.rank.RankingModel
 import com.nya.quiz.models.rank.RankingRepositoryImpl
